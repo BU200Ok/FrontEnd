@@ -33,6 +33,7 @@ const Home = () => {
                 <section className='home-section2'>
                     <button data-type='go' onClick={workHadler} className='go-to-work'>출근</button>
                     <button data-type='leave' onClick={workHadler} className='leave-work'>퇴근</button>
+                    <button data-type='leave' onClick={()=>{window.location.href='/login'}} className='leave-work'>로그인 테스트 하러 가기</button>
                 </section>
                 <section className='home-section3'>
                     <button onClick={()=>{window.location.href='/mypage/home'}}><img src='/home/button/mypage.png'/><div>마이페이지</div></button>
