@@ -24,17 +24,22 @@
     flex-direction: row;
 }
 .go-to-work,.leave-work{
+    cursor: pointer;
     margin-top: 3%;
     margin-right: 15px;
     display: block;
     font-size: 18px;
     background-color: transparent;
-    border-color: #E9EEE6;
+    border-color: #b6b6b6;
     border-width: 1px;
     box-shadow: none;
     border-radius: 80px;
     width: 209px;
     height: 46px;
+    transition: scale 0.2s ease;
+}
+.go-to-work:hover,.leave-work:hover{
+    scale: 1.1;
 }
 .homeImg{
     width: 512px;

@@ -1,73 +1,87 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import './Login.css'
 
 const Login = () => {
 
     const [id,setId] = useState('');
     const [pw,setPw] = useState('');
+    const [remember, setRemenber] = useState(false);
 
-    const [joinId,Id] = useState('');
-    const [joinPw,Pw] = useState('');
-
-    const [token, setToken] = useState('');
-
-    useEffect(()=>{
-        console.log(token);
-    },[token])
+    const rememberText = useRef(null);
 
     async function login(accountId, accountPassword) {
-        const formData = new FormData();
-        formData.append('username', accountId);
-        formData.append('password', accountPassword);
-    
-        const response = await fetch('http://localhost:8080/login', {
-            method: 'POST',
-            body: formData
-        });
-    
-        if (response.ok) {
-            const result = await response.text();
-            setToken(response.headers.get(`Authorization`));
+        if(accountId ==='' || accountPassword ===''){
+            alert('먼저 입력해주세요!');
+            return;
         } else {
-            alert('로그인 실패:', response.status);
+            const formData = new FormData();
+            formData.append('username', accountId);
+            formData.append('password', accountPassword);
+        
+            const response = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                body: formData
+            });
+        
+            if (response.ok) {         
+                localStorage.setItem('token',response.headers.get(`Authorization`));
+                window.location.href = '/';
+                if(remember){
+                    localStorage.setItem('id',id);
+                }else{
+                    if(localStorage.getItem('id')){
+                        localStorage.removeItem('id');
+                    }
+                }
+            } else {
+                alert('아이디, 비밀번호가 달라요.');
+            }
         }
     }
-    async function joinUser(accountId, accountPassword) {
-        const formData = new FormData();
-        formData.append('accountId', accountId);
-        formData.append('accountPassword', accountPassword);
     
-        const response = await fetch('http://localhost:8080/join', {
-            method: 'POST',
-            body: formData
-        });
-    
-        if (response.ok) {
-            const result = await response.text();
-            alert('회원가입 결과:', result);
+    const rememberChange = () => {
+        setRemenber(!remember);
+        if(!remember){
+            rememberText.current.innerText = `I will remember you!`;
         } else {
-            alert('회원가입 실패:', response.status);
+            rememberText.current.innerText = `Remember me`;
         }
+        
     }
 
+    useEffect(()=>{
+        if(localStorage.getItem('id')){
+            setId(localStorage.getItem('id'));
+            setRemenber(true);
+        }
+    },[])
+
     return(
-        <>  
-            <h1>로그인</h1>
-            <span>아이디 : </span><input type="text" value={id} onChange={(e)=>setId(e.target.value)} placeholder="아이디"/>
-            <br/>
-            <span>비밀번호 : </span><input type="password" value={pw} onChange={(e)=>setPw(e.target.value)} placeholder="비밀번호"/>
-            <br/>
-            <button onClick={()=>{login(id,pw)}}>로그인</button>
-            <br/>
-            <br/>
-            <h1>회원가입</h1>
-            <span>아이디 : </span><input type="text" value={joinId} onChange={(e)=>Id(e.target.value)} placeholder="아이디"/>
-            <br/>
-            <span>아이디 : </span><input type="text" value={joinId} onChange={(e)=>Id(e.target.value)} placeholder="아이디"/>
-            <br/>
-            <span>비밀번호 : </span><input type="password" value={joinPw} onChange={(e)=>Pw(e.target.value)} placeholder="비밀번호"/>
-            <br/>
-            <button onClick={()=>{joinUser(joinId,joinPw)}}>회원가입</button>
-        </>
+        <section className="login-background-container">  
+            <section className="login-container">
+                <section className="login-field-container">
+                    <h1 className="login-title">Sign In</h1>
+                    <div style={{color:'#8DB37B'}}>안녕하세요! 로그인을 위해서 먼저 당신의 정보를 적어주세요.</div>
+                    <div className="filed-text">Id</div>
+                    <input className="input-field" type="text" value={id} onChange={(e)=>setId(e.target.value)} placeholder="Enter ID"/>
+                    <div className="filed-text">password</div>
+                    <input className="input-field" type="password" value={pw} onChange={(e)=>setPw(e.target.value)} onKeyDown={(e)=>{
+                        if(e.key === 'Enter'){
+                            login(id,pw);
+                        }
+                    }} placeholder="Enter password"/>
+                    <div className="remember-me">
+                        <input checked={remember} onChange={rememberChange} type="checkbox"/><span ref={rememberText}>Remember me</span>
+                    </div>
+                    <button className="login-button" onClick={()=>{login(id,pw);}}><span style={{color:'white'}}>Sign in</span></button>
+                    <br/>
+                    <button onClick={()=>{window.location.href='/find-account'}} className="id-pw-find">아이디/비밀번호 찾기</button>
+                    <br/>
+                    <button onClick={()=>window.location.href='/'} className="id-pw-find">홈으로 돌아가기</button>
+                </section>
+                <img className="login-img" src={'/login/login.png'}/>
+            </section>        
+        </section>
     )
 }
 
