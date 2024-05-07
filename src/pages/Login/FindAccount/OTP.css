@@ -1,0 +1,23 @@
+.otp-input-field-container{
+    display: flex;
+}
+.otp-input-field{
+    width: 50px;
+    height: 60px;
+    margin-left: 20px;
+    outline: none;
+    box-sizing: border-box;
+    padding: 17px;
+    gap: 13px;
+    border: none;
+    box-shadow: 0 0 2px 1px #CCDDC5;
+    border-radius: 5px;
+    transition-property: box-shadow, border;
+    transition-duration: 0.4s;
+    cursor:text;
+    font-size: 20px;
+}
+.otp-input-field:focus{
+    box-shadow: 0 0 8px 2px #CCDDC5;
+    border: none;
+}

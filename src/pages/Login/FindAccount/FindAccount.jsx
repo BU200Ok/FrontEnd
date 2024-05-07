@@ -12,7 +12,8 @@ const FindAccount = () => {
 
     const findId = () => {
         if(checkEmailRegex(idEmail)){
-            sendEmailForFindAccount(idEmail);
+            sendEmailForFindAccount(idEmail);    //이메일 보내는 API 호출
+            window.location.href = '/find-account-otp';
         } else {
             alert('이메일이 올바르지 않아요.');
         }
