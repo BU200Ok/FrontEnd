@@ -4,7 +4,7 @@ import './Home.css';
 
 const Home = () => {
 
-    const [userName, setUserName] = useState('기본');
+    const [user, setUser] = useState({accountId: '알 수 없는 사용자'});
     const [isLogin, setIsLogin] = useState(false);
 
     const workHadler = (e) => {
@@ -17,16 +17,13 @@ const Home = () => {
     const logout = () => {
         localStorage.removeItem('token');
         setIsLogin(false);
-        setUserName('🛑로그인 먼저 해주세요!')
     }
 
     useEffect(()=>{
         if(localStorage.getItem('token')){
             const decode = jwtDecode(localStorage.getItem('token'))
-            setUserName(`안녕하세요! ${decode.accountId}님! ✔`);
+            setUser(decode);
             setIsLogin(true);
-        } else {
-            setUserName('🛑로그인 먼저 해주세요!')
         }
     },[])
 
@@ -35,7 +32,7 @@ const Home = () => {
         <section className='home'>
             <article className='home-article'>
                 <section className='home-section1'>
-                    <h1 className='home-greeting'>{userName}</h1>
+                    <h1 className='home-greeting'>{isLogin ? `안녕하세요! ${user.accountId}님! ✔`: '🛑로그인 먼저 해주세요!'}</h1>
                     <p className='home-text'>
                     Aplano를 통해 모든 직원은 어디에서든 온라인으로 현재 근무 스케줄을 확인할 수 있습니다. <br/>
                     온라인으로 근무 스케줄을 자동화하고 회사의 행정 및 커뮤니케이션 노력을 줄이세요.

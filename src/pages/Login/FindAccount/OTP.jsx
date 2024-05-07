@@ -9,7 +9,7 @@ const OTP = () => {
         number = otp[0]+otp[1]+otp[2]+otp[3]+otp[4];
         if(otp[0]!==''&&otp[1]!==''&&otp[2]!==''&&otp[3]!==''&&otp[4]!==''){
             checkOTP(number);
-            window.location.href='';
+            // window.location.href='/';
         }
     },[otp])
 
@@ -22,7 +22,7 @@ const OTP = () => {
         element.nextSibling.focus();
         }
     };
-
+    
     return(
         <section className="find-account-background-container">  
             <section className="find-account-container">
