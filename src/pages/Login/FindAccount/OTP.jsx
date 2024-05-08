@@ -1,15 +1,28 @@
 import { useEffect, useState } from "react";
 import './OTP.css';
-import { checkOTP } from "../../../callAPI/findAccount/FindAccountCallAPI";
+import { checkOTP, getIdByEmail, sendEmail } from "../../../callAPI/findAccount/FindAccountCallAPI";
 
 const OTP = () => {
     const [otp, setOtp] = useState(Array(5).fill(''));
     let number = '';
+    
     useEffect(()=>{
         number = otp[0]+otp[1]+otp[2]+otp[3]+otp[4];
         if(otp[0]!==''&&otp[1]!==''&&otp[2]!==''&&otp[3]!==''&&otp[4]!==''){
-            checkOTP(number);
-            window.location.href='';
+            // window.localStorage.setItem("email","koe7324@naver.com")
+            // sendEmail(window.localStorage.getItem('email'));
+            checkOTP(number)
+            .then(res =>{
+                if(res === true) {
+                    alert('성공');
+                    getIdByEmail(window.localStorage.getItem('email'));
+                }
+                else alert('번호안맞음');
+            })
+            .catch(err => {
+                console.error(err);
+                alert('에러발생');
+            })
         }
     },[otp])
 

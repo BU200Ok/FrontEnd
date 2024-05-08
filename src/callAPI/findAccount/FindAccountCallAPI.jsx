@@ -5,8 +5,29 @@ export const sendEmailForFindAccount = async (email) => {
     const response = await axios.get(`http://localhost:8080/login/send-email-for-find-account?email=${email}`);
     console.log(response.data);
 }
-//풀리퀘스트 테스트
+
 export const checkOTP = async (code) => {
-    const response = await axios.get(`http://localhost:8080/login/check-otp?code=${code}`);
-    console.log(response.data);
+    try{
+        const response = await axios.get(`http://localhost:8080/login/check-otp?code=${code}`);
+        console.log(response);
+        console.log(response.data.obj);
+        const result = response.data.obj;
+        return result;
+    }
+    catch(err){
+        console.log(err);
+        return false
+    }
+}
+
+export const getIdByEmail = async(mailAddress) => {
+    try{
+        const response = await axios.get(`http://localhost:8080/login/get-id?email=${mailAddress}`);
+        console.log(response);
+        return response;
+    }
+    catch(err){
+        console.error(err);
+        return false;
+    }
 }
