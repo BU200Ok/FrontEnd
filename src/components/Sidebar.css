@@ -1,0 +1,40 @@
+.admin-sidebar-container{
+    flex-shrink: 0;
+    width: 300px;
+    height: 100vh;
+    box-shadow: 2px 0 4px -3px gray;
+}
+.admin-sidebar-company-name{
+    user-select: none;
+    font-size: 40px;
+    margin-top: 67px;
+    cursor: pointer;
+}
+.admin-sidebar-list{
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 114px;
+    list-style-type: none;
+    padding: 0;
+    text-align: end;
+    margin-right: 45px;
+    font-size: 20px;
+    z-index: 0;
+}
+.admin-sidebar-list li{
+    z-index: 1;
+    margin-bottom: 68px;
+    transition: color 0.3s ease;
+}
+.admin-sidebar-list div{
+    position: absolute;
+    z-index: -1;
+    margin-left: 15px;
+    top: -40px;
+    width: 300px;
+    height: 97px;
+    border-radius: 10px;
+    background-color: #90B54C;
+    transition: top 0.3s ease;
+}
