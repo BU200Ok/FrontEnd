@@ -18,7 +18,7 @@ function App() {
           <Route path='/find-account-otp' element={<OTP/>}/>
 
           <Route element={<ProjectSidebar/>}>
-            <Route path='project' element={<Project/>}/>
+            <Route path='/project' element={<Project/>}/>
           </Route>
 
         </Routes>

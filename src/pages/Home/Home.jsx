@@ -22,6 +22,7 @@ const Home = () => {
     useEffect(()=>{
         if(localStorage.getItem('token')){
             const decode = jwtDecode(localStorage.getItem('token'))
+            console.log(decode);
             setUser(decode);
             setIsLogin(true);
         }
@@ -32,7 +33,7 @@ const Home = () => {
         <section className='home'>
             <article className='home-article'>
                 <section className='home-section1'>
-                    <h1 className='home-greeting'>{isLogin ? `안녕하세요! ${user.accountId}님! ✔`: '🛑로그인 먼저 해주세요!'}</h1>
+                    <h1 className='home-greeting'>{isLogin ? `안녕하세요! ${user.accountName}님! ✔`: '🛑로그인 먼저 해주세요!'}</h1>
                     <p className='home-text'>
                     Aplano를 통해 모든 직원은 어디에서든 온라인으로 현재 근무 스케줄을 확인할 수 있습니다. <br/>
                     온라인으로 근무 스케줄을 자동화하고 회사의 행정 및 커뮤니케이션 노력을 줄이세요.
@@ -40,16 +41,26 @@ const Home = () => {
                 </section>
                 <section className='home-section2'>
                     {
-                        isLogin? (
-                        <>
-                            <button data-type='go' onClick={workHadler} className='go-to-work'>출근</button>
-                            <button data-type='leave' onClick={workHadler} className='leave-work'>퇴근</button>
-                            <button onClick={logout} className='leave-work'>로그아웃</button>
-                        </>
-                        ):
+                        isLogin && user ?(
+                            user.accountRole === `ROLE_ADMIN` ?(
+                            <>
+                                <button data-type='go' onClick={workHadler} className='go-to-work'>출근</button>
+                                <button data-type='leave' onClick={workHadler} className='leave-work'>퇴근</button>
+                                <button onClick={()=>{alert('축하')}} className='leave-work'>관리자 페이지</button>
+                                <button onClick={logout} className='leave-work'>로그아웃</button>
+                            </>
+                            ) : (
+                            <>
+                                <button data-type='go' onClick={workHadler} className='go-to-work'>출근</button>
+                                <button data-type='leave' onClick={workHadler} className='leave-work'>퇴근</button>
+                                <button onClick={logout} className='leave-work'>로그아웃</button>
+                            </>
+                            ) 
+                        ) : (
                         <>
                             <button data-type='leave' onClick={()=>{window.location.href='/login'}} className='leave-work'>로그인</button>
                         </>
+                        )
                     }
                 </section>
                 <section className='home-section3'>
