@@ -23,8 +23,8 @@ export const checkOTP = async (code) => {
 export const getIdByEmail = async(mailAddress) => {
     try{
         const response = await axios.get(`http://localhost:8080/login/get-id?email=${mailAddress}`);
-        console.log(response);
-        return response;
+        console.log(response.data.obj);
+        return response.data.obj;
     }
     catch(err){
         console.error(err);

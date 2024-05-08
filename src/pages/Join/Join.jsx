@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const Join = () => {
     const [joinId,Id] = useState('');
     const [joinPw,Pw] = useState('');

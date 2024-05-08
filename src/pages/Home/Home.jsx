@@ -56,15 +56,15 @@ const Home = () => {
                     }
                 </section>
                 <section className='home-section3'>
-                    <button onClick={()=>{window.location.href='/mypage'}}><img src='/home/button/mypage.png'/><div>마이페이지</div></button>
-                    <button onClick={()=>{window.location.href='/project'}}><img src='/home/button/project.png'/><div>프로젝트</div></button>
-                    <button onClick={()=>{window.location.href='/forum'}}><img src='/home/button/forum.png'/><div>게시판</div></button>
-                    <button onClick={()=>{window.location.href='/todo-list'}}><img src='/home/button/todoList.png'/><div>투두리스트</div></button>
-                    <button onClick={()=>{window.location.href='/news'}}><img src='/home/button/todayNews.png'/><div>오늘의 소식</div></button>
+                    <button onClick={()=>{window.location.href='/mypage'}}><img src='/home/button/mypage.png' alt='mypage'/><div>마이페이지</div></button>
+                    <button onClick={()=>{window.location.href='/project'}}><img src='/home/button/project.png' alt='project'/><div>프로젝트</div></button>
+                    <button onClick={()=>{window.location.href='/forum'}}><img src='/home/button/forum.png' alt='forum'/><div>게시판</div></button>
+                    <button onClick={()=>{window.location.href='/todo-list'}}><img src='/home/button/todoList.png' alt='todo list'/><div>투두리스트</div></button>
+                    <button onClick={()=>{window.location.href='/news'}}><img src='/home/button/todayNews.png' alt='today news'/><div>오늘의 소식</div></button>
                 </section>
             </article>
 
-            <img className='homeImg' src='/home/homeImg.png'></img>
+            <img className='homeImg' src='/home/homeImg.png' alt='home'></img>
         </section>
         </>
     )
