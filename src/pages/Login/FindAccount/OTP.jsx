@@ -11,6 +11,7 @@ const OTP = () => {
         getIdByEmail(window.localStorage.getItem('email'))
         .then(res => {
             console.log(res);
+            window.localStorage.setItem("id", res);
             openLinkModalWithMessage("회원님의 id는 " + res + " 입니다.",'/login');
         })
         .catch(err => {
