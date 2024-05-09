@@ -50,6 +50,9 @@ const Login = () => {
     }
 
     useEffect(()=>{
+        if(localStorage.getItem('token')){
+            window.location.href = '/';
+        }
         if(localStorage.getItem('id')){
             setId(localStorage.getItem('id'));
             setRemenber(true);

@@ -1,0 +1,25 @@
+.project-main-sidebar{
+    width: 245px;
+    height: 100vh;
+    box-shadow: 2px 0 4px -3px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 80px;
+}
+.project-main-sidebar div{
+    user-select: none;
+    font-size: 24px;
+    margin-top: 117px;
+}
+.project-main-sidebar ol{
+    margin-top: 102px;
+    list-style-type: none;
+    padding: 0;
+}
+.project-main-sidebar ol li{
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 68px;
+    font-size: 20px;
+}

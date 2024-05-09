@@ -23,6 +23,7 @@ const OTP = () => {
     useEffect(()=>{
         
         if(otp[0]!==''&&otp[1]!==''&&otp[2]!==''&&otp[3]!==''&&otp[4]!==''){
+<<<<<<< HEAD
             // window.localStorage.setItem("email","koe7324@naver.com")
             // sendEmail(window.localStorage.getItem('email'));
             checkOTP(number)
@@ -37,6 +38,10 @@ const OTP = () => {
                 console.error(err);
                 openModalWithMessage("에러가 발생했습니다.");
             })
+=======
+            checkOTP(number);
+            // window.location.href='/';
+>>>>>>> 12df465563f81e877bd0fb87379010a93cd19c9f
         }
     },[otp, number])
 
