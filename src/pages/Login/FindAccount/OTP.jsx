@@ -49,7 +49,7 @@ const OTP = () => {
         element.nextSibling.focus();
         }
     };
-
+    
     return(
         <section className="find-account-background-container">  
             <section className="find-account-container">
