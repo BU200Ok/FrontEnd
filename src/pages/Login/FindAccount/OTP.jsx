@@ -1,17 +1,44 @@
 import { useEffect, useState } from "react";
 import './OTP.css';
-import { checkOTP } from "../../../callAPI/findAccount/FindAccountCallAPI";
+import { checkOTP, getIdByEmail} from "../../../callAPI/findAccount/FindAccountCallAPI";
+import { openLinkModalWithMessage, openModalWithMessage } from "../../Modal/modalFunc";
 
 const OTP = () => {
     const [otp, setOtp] = useState(Array(5).fill(''));
     let number = '';
+    const showIdModal = () => {
+        console.log("function call");
+        getIdByEmail(window.localStorage.getItem('email'))
+        .then(res => {
+            console.log(res);
+            window.localStorage.setItem("id", res);
+            openLinkModalWithMessage("회원님의 id는 " + res + " 입니다.",'/login');
+        })
+        .catch(err => {
+            console.error(err);
+            openLinkModalWithMessage(`해당 이메일의 id 정보가 없습니다. 회원가입을 진행해 주세요`, '/join')
+        })
+    }
+    number = otp[0]+otp[1]+otp[2]+otp[3]+otp[4];
     useEffect(()=>{
-        number = otp[0]+otp[1]+otp[2]+otp[3]+otp[4];
+        
         if(otp[0]!==''&&otp[1]!==''&&otp[2]!==''&&otp[3]!==''&&otp[4]!==''){
-            checkOTP(number);
-            // window.location.href='/';
+            // window.localStorage.setItem("email","koe7324@naver.com")
+            // sendEmail(window.localStorage.getItem('email'));
+            checkOTP(number)
+            .then(res =>{
+                if(res === true) {
+                    // alert('성공');
+                    showIdModal();
+                }
+                else openModalWithMessage("번호가 일치하지 않습니다.");
+            })
+            .catch(err => {
+                console.error(err);
+                openModalWithMessage("에러가 발생했습니다.");
+            })
         }
-    },[otp])
+    },[otp, number])
 
     const handleChange = (element, index) => {
         const newOtp = [...otp];
@@ -22,7 +49,7 @@ const OTP = () => {
         element.nextSibling.focus();
         }
     };
-    
+        
     return(
         <section className="find-account-background-container">  
             <section className="find-account-container">

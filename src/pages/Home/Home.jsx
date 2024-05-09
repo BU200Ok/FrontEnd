@@ -75,7 +75,7 @@ const Home = () => {
                 </section>
             </article>
 
-            <img className='homeImg' src='/home/homeImg.png'></img>
+            <img className='homeImg' src='/home/homeImg.png' alt='home'></img>
         </section>
         </>
     )
