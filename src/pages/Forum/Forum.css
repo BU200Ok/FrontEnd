@@ -1,0 +1,26 @@
+
+/* 검은색 페이지네이션 버튼 */
+.pagination .page-link {
+    color: black; 
+    background-color: white;
+    border-color: black; 
+}
+
+/* 활성 페이지네이션 버튼 */
+.pagination .page-link.active {
+    color: white; 
+    background-color: black; 
+    border-color: black; 
+}
+
+/* 탭 링크의 글자 색상을 검은색으로 설정 */
+/* .nav-link {
+    color: black !important;
+} */
+
+/* 활성 탭 링크의 글자 색상 설정 */
+/* .nav-link.active {
+    color: black !important; 
+    background-color: #e2eee5 !important;
+} */
+
