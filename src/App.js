@@ -20,12 +20,14 @@ import Board from './pages/Board/Board';
 import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
 import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
 import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
+import InputModal from './pages/Modal/InputModal';
 
 
 function App() {
   return (
     <div className='App'>
       <Provider store={store}>
+        <InputModal/>
         <MessageModal/>
         <BrowserRouter>
         <LinkModal/>

@@ -1,0 +1,38 @@
+.project-forum-post{
+    display: flex;
+    margin-left: 30px;
+    flex-direction: column;
+    width: 760px;
+    background-color: #90B54C;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+.project-forum-post header{
+    display: flex;
+    flex-direction: row;
+    background-color: #BDD788;
+    border-radius: 5px;
+    height: 40px;
+}
+.project-forum-post header div{
+    margin-left: 20px;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.project-forum-post-header{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.project-forum-post-header div{
+    display: flex;
+    margin-right: 30px;
+}
+.project-forum-post main{
+    margin-top: 20px;
+    text-align: start;
+    margin-left: 20px;
+    color: white;
+}

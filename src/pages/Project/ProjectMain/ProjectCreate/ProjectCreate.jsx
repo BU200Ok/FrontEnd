@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ProjectCreate.css';
+import LocationButton from '../../Component/LocationButton';
 
 const ProjectCreate = () => {
     const [formData, setFormData] = useState({
@@ -59,6 +60,8 @@ const ProjectCreate = () => {
     };
 
     return (
+        <section>
+            <LocationButton location={'/project'}/>
         <form onSubmit={handleSubmit} className="project-form">
             <label>
                 Project Code:
@@ -109,6 +112,7 @@ const ProjectCreate = () => {
             </fieldset>
             <button type="submit">Submit</button>
         </form>
+        </section>
     );
 };
 

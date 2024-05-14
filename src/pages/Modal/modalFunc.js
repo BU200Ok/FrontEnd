@@ -1,4 +1,4 @@
-import { openModal, closeModal as handleCloseModal, setMessage, openLinkModal, closeLinkModal as handleCloseLinkModal, setLinkMessage, setLink } from "./modalActions";
+import { openModal, closeModal as handleCloseModal, setMessage, openLinkModal, closeLinkModal as handleCloseLinkModal, setLinkMessage, setLink, setInputModalMessage, openInputModal, handleCloseInputModal } from "./modalActions";
 import store from "../../redux/redux";
 
 export const openModalWithMessage = (message) => {
@@ -18,4 +18,12 @@ export const openLinkModalWithMessage = (message, link) => {
 
 export const closeLinkModal = () =>{
     store.dispatch(handleCloseLinkModal());
+}
+
+export const openInputModalWithMassage = (message) => {
+    store.dispatch(setInputModalMessage(message));
+    store.dispatch(openInputModal());
+}
+export const closeInputModal = (message) =>{
+    store.dispatch(handleCloseInputModal(message));
 }

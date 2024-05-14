@@ -4,6 +4,9 @@ import './ProjectForum.css';
 import './Forum.css';
 import axios from "axios";
 import Pagination from "react-js-pagination";
+import LocationButton from "../Component/LocationButton";
+import { openInputModalWithMassage } from "../../Modal/modalFunc";
+import { useSelector } from "react-redux";
 
 //남은 기능 : 게시글 작성, 게시글 찾기, 프로젝트 생성
 
@@ -14,6 +17,12 @@ const ProjectForum = () => {
     const navigate = useNavigate();
     const [leftDay, setLeftDay] = useState();
     const [page, setPage] = useState(1);
+
+    const value = useSelector((state)=>state.inputModalValue);
+
+    useEffect(()=>{
+        console.log(value);
+    },[value])
 
     useEffect(()=>{
         if(project === null && projectCode){
@@ -53,12 +62,13 @@ const ProjectForum = () => {
 
     };
     const addMember = () => {
-        alert('모달 창 열거임');
+        openInputModalWithMassage("이름을 입력하세요!")
     }
     return(
         <section style={{display:'flex'}}>
             { project ? 
             <section className="project-forum-sidebar">
+                <LocationButton style={{marginTop:25}} location={'/project'}/>
                 <div style={{fontSize:25,marginTop:30}}>프로젝트 게시판</div>
                 <section className="project-forum-project-information">
                     <div style={{display:'flex'}}>

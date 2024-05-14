@@ -3,9 +3,11 @@ import Pagination from "react-js-pagination";
 import './Project.css';
 import ProjectComponent from './ProjectComponent';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Project = () => {
 
+    const nav = useNavigate();
     const [project,setProject] = useState([]);
     const [title,setTitle] = useState('전체 프로젝트');
     const [page,setPage] = useState(1);
@@ -93,7 +95,7 @@ const Project = () => {
                 <div>{title}</div>
                 <input value={searchWord} onChange={(e)=>{setSearchWord(e.target.value)}} placeholder="프로젝트 검색"/>
                 <button onClick={getSearchProject}>검색</button>
-                <button>프로젝트 만들기</button>
+                <button onClick={()=>{nav('/project/create')}}>프로젝트 만들기</button>
             </section>
             <ProjectComponent project={project} title={title}/>
             </section>
