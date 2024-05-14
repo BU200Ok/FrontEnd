@@ -97,8 +97,6 @@ const Project = () => {
             </section>
             <ProjectComponent project={project} title={title}/>
             </section>
-            
-            
             <Pagination
                     activePage={page} // 현재 페이지
                     itemsCountPerPage={6} // 한 페이지랑 보여줄 아이템 갯수

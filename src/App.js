@@ -19,6 +19,7 @@ import Attendance from './pages/Attendance/Attendance';
 import Board from './pages/Board/Board';
 import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
 import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
+import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
               <Route path='/project' element={<Project/>}/>
               <Route path='/project/:projectCode' element={<ProjectForum/>}/>
               <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
+              <Route path='/project/create' element={<ProjectCreate/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
 
             <Route path='/board' element={<Board/>}/>

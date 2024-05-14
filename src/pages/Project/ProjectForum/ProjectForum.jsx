@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import './ProjectForum.css';
+import './Forum.css';
 import axios from "axios";
+import Pagination from "react-js-pagination";
+
+//남은 기능 : 게시글 작성, 게시글 찾기, 프로젝트 생성
 
 const ProjectForum = () => {
     const {projectCode} = useParams();
     const [project, setProject] = useState(null);
+    const [forum, setForum] = useState([]);
     const navigate = useNavigate();
     const [leftDay, setLeftDay] = useState();
+    const [page, setPage] = useState(1);
 
     useEffect(()=>{
         if(project === null && projectCode){
             getSidebarData(projectCode);
-            
+            getForumData(projectCode);
         }
     },[projectCode])
 
@@ -25,12 +31,29 @@ const ProjectForum = () => {
         setProject(response.data.obj);
         dayUtil(response.data.obj.projectEnd);
     }
+    const getForumData = async () => {
+        const response = await axios.get(`http://localhost:8080/project/project-forum-data?projectCode=${projectCode}`,
+        {
+            headers: {Authorization: localStorage.getItem('token')}
+        }
+        )
+        setForum(response.data.obj);
+        console.log(response.data);
+    }
     const dayUtil = (end) => {
             const today = new Date();
             const endDate = new Date(end);
             const timeDiff = endDate - today;
             const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             setLeftDay(days);
+    }
+    const handlePageChange = (page) => {    //페이지 누름
+        setPage(page);  //여기서 시간이걸림
+        sessionStorage.setItem('currentPage',page); 
+
+    };
+    const addMember = () => {
+        alert('모달 창 열거임');
     }
     return(
         <section style={{display:'flex'}}>
@@ -73,6 +96,7 @@ const ProjectForum = () => {
 
                 </section>
                 <section className="project-sidebar-bottom-container">
+                    <button onClick={addMember}>추가하기</button>
                     <div style={{textAlign:'start',fontSize:20}}>프로젝트 참여자</div>
                     <section className="project-sidebar-scrollable-container">
                     {
@@ -97,7 +121,50 @@ const ProjectForum = () => {
             <section></section>
             }
             <section>
-                <div><button onClick={()=>{navigate(`/project/${projectCode}/1`)}}>sd</button></div>
+                <select>
+                    <option>제목</option>
+                    <option>내용</option>
+                </select>
+                <input type="text" />
+                <button>게시글 싸기</button>
+                <button>게시글 찾기</button>
+                <div className="container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>상태</th>
+                                <th>제목</th>
+                                <th>작성일</th>
+                                <th>마감기한</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                forum ? 
+                                forum.map((value) => (
+                                    <tr onClick={()=>{navigate(`${value.projectForumCode}`)}} key={value.projectForumCode}>
+                                        <td>{value.projectForumCode}</td>
+                                        <td>{value.projectForumStatus}</td>
+                                        <td>{value.projectForumName}</td>
+                                        <td>{value.projectForumCreateTime}</td>
+                                        <td>{value.projectForumModifyDate}</td>
+                                    </tr>
+                                )) :
+                                (<div></div>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <Pagination
+                    activePage={page} // 현재 페이지
+                    itemsCountPerPage={6} // 한 페이지랑 보여줄 아이템 갯수
+                    totalItemsCount={6} // 총 아이템 갯수
+                    pageRangeDisplayed={5} // paginator의 페이지 범위
+                    prevPageText={"‹"} // "이전"을 나타낼 텍스트
+                    nextPageText={"›"} // "다음"을 나타낼 텍스트
+                    onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
+            />
             </section>
         </section>
     )
