@@ -50,6 +50,9 @@ const Login = () => {
     }
 
     useEffect(()=>{
+        if(localStorage.getItem('token')){
+            window.location.href = '/';
+        }
         if(localStorage.getItem('id')){
             setId(localStorage.getItem('id'));
             setRemenber(true);
@@ -79,7 +82,7 @@ const Login = () => {
                     <br/>
                     <button onClick={()=>window.location.href='/'} className="id-pw-find">홈으로 돌아가기</button>
                 </section>
-                <img className="login-img" src={'/login/login.png'}/>
+                <img className="login-img" src={'/login/login.png'} alt="login"/>
             </section>        
         </section>
     )
