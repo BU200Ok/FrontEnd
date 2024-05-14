@@ -25,6 +25,7 @@ const Home = () => {
     useEffect(()=>{
         if(localStorage.getItem('token')){
             const decode = jwtDecode(localStorage.getItem('token'))
+            console.log(decode);
             setUser(decode);
             setIsLogin(true);
         }

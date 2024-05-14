@@ -17,6 +17,9 @@ import AdminDeletion from './pages/Admin/AdminDeletion/AdminDeletion';
 import Sidebar from './components/Sidebar';
 import Attendance from './pages/Attendance/Attendance';
 import Board from './pages/Board/Board';
+import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
+import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
+
 
 function App() {
   return (
@@ -40,7 +43,8 @@ function App() {
           <Route element={<Sidebar/>}>
               <Route path='/mypage' element={<MyPage/>}/>
               <Route path='/project' element={<Project/>}/>
-  
+              <Route path='/project/:projectCode' element={<ProjectForum/>}/>
+              <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
 
             <Route path='/board' element={<Board/>}/>

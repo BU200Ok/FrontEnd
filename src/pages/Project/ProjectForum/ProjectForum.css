@@ -1,0 +1,53 @@
+.project-forum-sidebar{
+    width: 364px;
+    height: 100vh;
+    box-shadow: 2px 0 4px -3px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 80px;
+}
+.project-forum-project-information{
+    margin-top: 50px;
+    width: 324px;
+    height: 150px;
+}
+.project-sidebar-bottom-container {
+    margin-top: 230px;
+    border-radius: 10px;
+    height: 401px;
+    width: 344px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.project-sidebar-scrollable-container {
+    border-radius: 10px;
+    height: 334px; /* 또는 원하는 높이 */
+    overflow-y: auto; /* 세로 스크롤바 활성화 */
+
+    padding: 10px; /* 패딩 */
+}
+.project-sidebar-scrollable-member{
+    margin-bottom: 15px;
+}
+.project-sidebar-profile-img{
+    border-radius: 4px;
+    width: 52px;
+    height: 52px;
+    background-color: #90B54C;
+}
+/* 스크롤바 트랙 (스크롤바 배경) */
+.project-sidebar-scrollable-container::-webkit-scrollbar {
+    width: 10px; /* 스크롤바의 너비 */
+  }
+  
+  /* 스크롤바 핸들 (움직이는 부분) */
+  .project-sidebar-scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #D9D9D9; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 모서리 둥글게 */
+  }
+  
+  /* 스크롤바 트랙에 대한 호버 효과 */
+  .project-sidebar-scrollable-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* 호버 시 스크롤바 색상 변경 */
+  }

@@ -23,3 +23,43 @@
     margin-bottom: 68px;
     font-size: 20px;
 }
+
+.pagination {
+    position: absolute;
+    top: 1000px;
+    margin-left: 40%;
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pagination li {
+    margin: 4px;
+    border: 1px solid #ddd;
+    border-radius: 5px; /* 버튼의 모서리를 둥글게 */
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #303d19; /* 링크 색상 */
+    border-radius: 5px;
+  }
+  
+  .pagination li a:hover {
+    background-color: #b2df60; /* 마우스 호버 색상 */
+  }
+  
+  .pagination .active a {
+    background-color: #90B54C; /* 활성 페이지 배경 색상 */
+    color: white; /* 활성 페이지 텍스트 색상 */
+  }
+  
+  .pagination .disabled a {
+    color: #ccc; /* 비활성화된 페이지 색상 */
+  }
+
+  .hovered{
+    background-color: white;
+  }
