@@ -2,11 +2,11 @@ import React from 'react';
 import './MyPage.css';
 const ShowUserInfo = (props) => {
     const { userInfo } = props;
-
-    if (!userInfo) {
+    console.log(userInfo);
+    if (userInfo === false) {
         return <h3>유저 정보를 가져오는 중입니다.</h3>;
     }
-
+    else
     // userInfo가 존재하면 안전하게 필드에 접근
     return (
         <div className='userInfoArea'>

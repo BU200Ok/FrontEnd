@@ -26,7 +26,7 @@ const Notice = () => {
             {notices.map((notice, index) => (
                 <div key={index} className="notice-card">
                     <div className="notice-image">
-                        <img src={notice.imgsrc} alt='notice writer profile image'/>
+                        <img src={notice.imgsrc} alt='notice writer profile'/>
                     </div>
                     <div>
                         <h3>{notice.name}</h3>
