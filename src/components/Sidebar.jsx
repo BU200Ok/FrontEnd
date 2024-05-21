@@ -22,7 +22,7 @@ const Sidebar = () =>{
                 attendance.current.style.color = 'white';
                 board.current.style.color = 'black';
                 project.current.style.color = 'black';
-            } else if(url==='board'){
+            } else if(url==='forum'){
                 selectionBox.current.style.top = '60px';
                 attendance.current.style.color = 'black';
                 board.current.style.color = 'white';
@@ -40,8 +40,8 @@ const Sidebar = () =>{
         const url = urlArr[3];
         if(url==='attendance'){
             moveSelectionBox('attendance');
-        } else if(url ==='board'){
-            moveSelectionBox('board');
+        } else if(url ==='forum'){
+            moveSelectionBox('forum');
         } else if(url==='project'){
             moveSelectionBox('project');
         }
@@ -56,7 +56,7 @@ const Sidebar = () =>{
 
                         <li ref={attendance} onClick={()=>{go('attendance')}}>근태 관리</li>
 
-                        <li ref={board} onClick={()=>{go('board')}}>게시판</li>
+                        <li ref={board} onClick={()=>{go('forum')}}>게시판</li>
 
                         <li ref={project} onClick={()=>{go('project')}}>프로젝트</li>
 

@@ -13,14 +13,22 @@
     border-color: black; 
 }
 
-/* 탭 링크의 글자 색상을 검은색으로 설정 */
-/* .nav-link {
-    color: black !important;
-} */
 
-/* 활성 탭 링크의 글자 색상 설정 */
-/* .nav-link.active {
-    color: black !important; 
-    background-color: #e2eee5 !important;
-} */
+.right-align-container {
+    display: flex;
+    justify-content: flex-end; /* 요소들을 컨테이너의 오른쪽 끝으로 정렬 */
+}
 
+.card-container {
+    width: 100%; /* 또는 다른 적절한 너비 설정 */
+    padding: 10px; /* 적절한 패딩 제공 */
+}
+
+.card {
+    max-width: 400px; /* 카드의 최대 너비 제한 */
+}
+
+.custom-button {
+    padding: 5px 10px; /* 상하 패딩을 줄임 */
+    font-size: 16px; /* 폰트 크기 조절 */
+}
