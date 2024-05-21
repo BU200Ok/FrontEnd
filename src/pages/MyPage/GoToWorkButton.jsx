@@ -4,12 +4,13 @@ import { openModalWithMessage } from '../Modal/modalFunc';
 
 const GoToWorkButton = () => {
     const checkWorking = async() => {
+        console.log(window.localStorage.getItem("token"));
         try{
-            const response = axios.post("http://localhost:8080/mypage/mainpage/attendance-go-work",{
+            const response = axios.post("http://localhost:8080/mypage/mainpage/attendance-go-work",{},{
                 headers: {
                     'Authorization': window.localStorage.getItem("token")  // 여기에 토큰 추가
                 }
-            })
+            });
             console.log(response);
             openModalWithMessage("출근완료");
         }
