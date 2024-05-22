@@ -131,15 +131,14 @@ const ProjectForum = () => {
             <section></section>
             }
             <section>
-                <select>
-                    <option>제목</option>
-                    <option>내용</option>
-                </select>
-                <input type="text" />
-                <button>게시글 싸기</button>
-                <button>게시글 찾기</button>
                 <div className="container">
-                    <table>
+                    <button>분석</button>
+                    <button>설계</button>
+                    <button>구현</button>
+                    <button>테스트</button>
+                    <button>산출물</button>
+
+                    {/* <table>
                         <thead>
                             <tr>
                                 <th>번호</th>
@@ -164,7 +163,7 @@ const ProjectForum = () => {
                                 (<div></div>)
                             }
                         </tbody>
-                    </table>
+                    </table> */}
                 </div>
                 <Pagination
                     activePage={page} // 현재 페이지

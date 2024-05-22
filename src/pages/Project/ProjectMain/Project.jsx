@@ -39,6 +39,7 @@ const Project = () => {
             setTotalElements(res.data.obj.totalElements);
             setProject(res.data.obj);
         }else {
+            try{
             const response = await axios.get(`http://localhost:8080/project/get-project?page=${p-1}`,
             {
                 headers: {Authorization: localStorage.getItem('token')}
@@ -46,6 +47,10 @@ const Project = () => {
             )
             setTotalElements(response.data.obj.totalElements);
             setProject(response.data.obj);
+            } catch(err){
+                nav('/error/403',{state: {msg:"로그인 먼저 해주세요."}});
+            }
+         
         }
         
     }

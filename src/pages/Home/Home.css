@@ -1,6 +1,7 @@
 .home{
     display: flex;
     justify-content: space-between;
+    user-select: none;
 }
 .home-article{
     width: 100%;
