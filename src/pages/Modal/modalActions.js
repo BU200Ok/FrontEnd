@@ -23,3 +23,20 @@ export const setLink = (link) => ({
     type: 'set_link',
     payload : link
 });
+
+export const openInputModal = () => ({
+    type: 'open_inputModal'
+});
+export const handleCloseInputModal = (message) => ({
+    type: 'close_inputModal',
+    payload: message
+});
+export const setInputModalMessage = (message) => ({
+    type: 'set_inputMessage',
+    payload: message
+});
+
+export const setInputModalValue = (value) => ({
+    type: 'set_input_value',
+    payload: value,
+})
