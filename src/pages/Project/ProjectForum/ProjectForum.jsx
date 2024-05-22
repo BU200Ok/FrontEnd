@@ -132,7 +132,7 @@ const ProjectForum = () => {
             }
             <section>
                 <div className="container">
-                    <button onClick={}>분석</button>
+                    <button>분석</button>
                     <button>설계</button>
                     <button>구현</button>
                     <button>테스트</button>

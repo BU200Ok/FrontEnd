@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {jwtDecode} from 'jwt-decode';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
+import { checkLeaving, checkWorking } from '../MyPage/workingCheckFunc';
 
 const Home = () => {
     const mainPage = useRef(null);
@@ -55,8 +56,8 @@ const Home = () => {
                             </>
                             ) : (
                             <>
-                                <button data-type='go' onClick={workHadler} className='go-to-work'>출근</button>
-                                <button data-type='leave' onClick={workHadler} className='leave-work'>퇴근</button>
+                                <button data-type='go' onClick={checkWorking} className='go-to-work'>출근</button>
+                                <button data-type='leave' onClick={checkLeaving} className='leave-work'>퇴근</button>
                                 <button onClick={logout} className='leave-work'>로그아웃</button>
                             </>
                             ) 
