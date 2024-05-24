@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
@@ -19,11 +19,18 @@ import Attendance from './pages/Attendance/Attendance';
 import Forum from './pages/Forum/Forum';
 import ForumCreateComponent from './pages/Forum/post/ForumCreateComponent';
 import ForumDetailListComponent from './pages/Forum/ForumDetailListComponent';
+import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
+import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
+import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
+import InputModal from './pages/Modal/InputModal';
+import ErrorPage from './pages/Error/ErrorPage';
+
 
 function App() {
   return (
     <div className='App'>
       <Provider store={store}>
+        <InputModal/>
         <MessageModal/>
         <BrowserRouter>
         <LinkModal/>
@@ -33,15 +40,20 @@ function App() {
             <Route path='/find-account' element={<FindAccount/>}/>
             <Route path='/find-account-otp' element={<OTP/>}/>
             <Route path='/join' element={<Join/>}/>
+            <Route path="/error/:errorCode" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage errorCode={404} />} />  
   
             <Route element={<AdminSidbar/>}>
-            <Route path='admin/join' element={<AdminJoin/>}/>
-            <Route path='admin/deletion' element={<AdminDeletion/>}/>
-          </Route>
+              <Route path='admin/join' element={<AdminJoin/>}/>
+              <Route path='admin/deletion' element={<AdminDeletion/>}/>
+            </Route>
 
           <Route element={<Sidebar/>}>
               <Route path='/mypage' element={<MyPage/>}/>
               <Route path='/project' element={<Project/>}/>
+              <Route path='/project/:projectCode' element={<ProjectForum/>}/>
+              <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
+              <Route path='/project/create' element={<ProjectCreate/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
             <Route path='/forum' element={<Forum/>}/>
             <Route path="/create" element={<ForumCreateComponent/>} />
@@ -50,6 +62,7 @@ function App() {
   
           </Routes>
         </BrowserRouter>
+        
       </Provider>
     </div>
   );

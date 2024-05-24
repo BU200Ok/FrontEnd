@@ -48,7 +48,6 @@ const Sidebar = () =>{
     },[])
 
     return(
-        <>
             <section style={{display:'flex'}}>
                 <section className="sidebar-container">
                     <div onClick={()=>{navigate('/')}} className="sidebar-company-name">회사 이름</div>
@@ -67,8 +66,6 @@ const Sidebar = () =>{
                     <Outlet/>
                 </section>
             </section>
-            
-        </>
         
     )
 }

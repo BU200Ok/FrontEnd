@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {jwtDecode} from 'jwt-decode';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
+import { checkLeaving, checkWorking } from '../MyPage/workingCheckFunc';
 
 const Home = () => {
     const mainPage = useRef(null);
@@ -25,6 +26,7 @@ const Home = () => {
     useEffect(()=>{
         if(localStorage.getItem('token')){
             const decode = jwtDecode(localStorage.getItem('token'))
+            console.log(decode);
             setUser(decode);
             setIsLogin(true);
         }
@@ -54,8 +56,8 @@ const Home = () => {
                             </>
                             ) : (
                             <>
-                                <button data-type='go' onClick={workHadler} className='go-to-work'>출근</button>
-                                <button data-type='leave' onClick={workHadler} className='leave-work'>퇴근</button>
+                                <button data-type='go' onClick={checkWorking} className='go-to-work'>출근</button>
+                                <button data-type='leave' onClick={checkLeaving} className='leave-work'>퇴근</button>
                                 <button onClick={logout} className='leave-work'>로그아웃</button>
                             </>
                             ) 
@@ -67,11 +69,11 @@ const Home = () => {
                     }
                 </section>
                 <section className='home-section3'>
-                    <button onClick={()=>{nav('/mypage')}}><img src='/home/button/mypage.png'/><div>마이페이지</div></button>
-                    <button onClick={()=>{nav('/project')}}><img src='/home/button/project.png'/><div>프로젝트</div></button>
-                    <button onClick={()=>{nav('/forum')}}><img src='/home/button/forum.png'/><div>게시판</div></button>
-                    <button onClick={()=>{nav('/attendance')}}><img src='/home/button/todoList.png'/><div>근태 관리</div></button>
-                    <button onClick={()=>{nav('/board/news')}}><img src='/home/button/todayNews.png'/><div>오늘의 소식</div></button>
+                    <button disabled={!isLogin} onClick={()=>{nav('/mypage')}}><img src='/home/button/mypage.png'/><div>마이페이지</div></button>
+                    <button disabled={!isLogin} onClick={()=>{nav('/project')}}><img src='/home/button/project.png'/><div>프로젝트</div></button>
+                    <button disabled={!isLogin} onClick={()=>{nav('/board')}}><img src='/home/button/forum.png'/><div>게시판</div></button>
+                    <button disabled={!isLogin} onClick={()=>{nav('/attendance')}}><img src='/home/button/todoList.png'/><div>근태 관리</div></button>
+                    <button disabled={!isLogin} onClick={()=>{nav('/board/news')}}><img src='/home/button/todayNews.png'/><div>오늘의 소식</div></button>
                 </section>
             </article>
 
