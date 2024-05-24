@@ -32,7 +32,7 @@ const DepartmentList = ({forum}) => {
     }
 
     const handleCreatePost = () => {
-        // console.log('accountCode:', userInfo.accountCode);
+        //console.log('accountCode:', userInfo.accountCode);
         navigate('/create', { state: { accountCode: userInfo.accountCode } });
     };
     
@@ -51,7 +51,7 @@ const DepartmentList = ({forum}) => {
                     게시글 작성
                 </button>
             </div>
-            <ForumListComponent forum={forum} />
+            <ForumListComponent forum={forum} userInfo={userInfo} />
             <PaginationComponent></PaginationComponent>
         </div>
     );

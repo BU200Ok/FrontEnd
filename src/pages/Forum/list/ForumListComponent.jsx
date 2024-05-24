@@ -22,6 +22,7 @@ const ForumListComponent = ({forum, userInfo}) => {
 
     const handleRowClick = (forumCode) => {
         navigate(`/forum/${forumCode}`, { state: { userInfo } });
+        console.log(userInfo);
     };
 
 

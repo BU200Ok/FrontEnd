@@ -33,8 +33,8 @@ const ForumCreateComponent = () => {
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
         setForum({ ...forum, forumContent: data });
-        const plainText = data.replace(/<\/?[^>]+(>|$)/g, "");
-        setForum({ ...forum, forumContent: plainText });
+        // const plainText = data.replace(/<\/?[^>]+(>|$)/g, "");
+        // setForum({ ...forum, forumContent: plainText });
     };
 
     // 폼 제출 처리
@@ -90,7 +90,6 @@ const ForumCreateComponent = () => {
                 }}
             />
             <button type="submit" className={style.submit_button}>게시글 작성</button>
-            <MessageModal />
         </form>
     );
 };

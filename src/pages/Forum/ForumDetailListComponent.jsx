@@ -10,6 +10,10 @@ const ForumDetailListComponent = () => {
     const { ForumCode } = useParams();
     const [forum, setForum] = useState(null);
     const navigate = useNavigate();
+    // useEffect(()=> {
+    //     console.log(location.state.userInfo);
+        
+    // }, [])
 
     const getAuthHeaders = () => {
         return {
@@ -52,11 +56,11 @@ const ForumDetailListComponent = () => {
     return (
         <div>
             <h1>{forum.forumTitle}</h1>
-            <p>{forum.forumContent}</p>
+            <p>{<div dangerouslySetInnerHTML={{ __html: forum.forumContent}}></div>}</p>
             <p><strong>Type:</strong> {forum.forumType}</p>
             <p><strong>Created:</strong> {forum.forumCreateTime}</p>
             <div className="d-grid gap-2">
-            {userInfo && forum.accountCode === userInfo.accountCode && (
+            {(userInfo && forum.accountCode === userInfo.accountCode) && (
                 <button
                     onClick={handleDeletePost}
                     className="btn btn-outline-danger"
@@ -65,7 +69,6 @@ const ForumDetailListComponent = () => {
                 </button>
                 )}
             </div>
-            <MessageModal />
         </div>
     );
 };
