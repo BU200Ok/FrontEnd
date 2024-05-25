@@ -7,6 +7,7 @@ import Pagination from "react-js-pagination";
 import LocationButton from "../Component/LocationButton";
 import { openInputModalWithMassage } from "../../Modal/modalFunc";
 import { useSelector } from "react-redux";
+import ProjectOptionSelectMenu from "./ProjectOptionSelectMenu";
 
 //남은 기능 : 게시글 작성, 게시글 찾기, 프로젝트 생성
 
@@ -132,11 +133,7 @@ const ProjectForum = () => {
             }
             <section>
                 <div className="container">
-                    <button>분석</button>
-                    <button>설계</button>
-                    <button>구현</button>
-                    <button>테스트</button>
-                    <button>산출물</button>
+                    <ProjectOptionSelectMenu />
 
                     {/* <table>
                         <thead>

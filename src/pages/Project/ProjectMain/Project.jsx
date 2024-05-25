@@ -18,6 +18,9 @@ const Project = () => {
     useEffect(()=>{ //처음 들옴
         getAllProject(1);
     },[])
+    useEffect(()=> {
+        console.log(project);
+    }, [project]);
     const handlePageChange = (page) => {    //페이지 누름
         setPage(page);  //여기서 시간이걸림
         sessionStorage.setItem('currentPage',page); 
@@ -27,22 +30,27 @@ const Project = () => {
             getAllProject(page);
         }
     };
-
+    // const reqUrl = `http://localhost:8080/project/get-search-all-project?page=${p-1}&word=${searchWord}`;
     const getAllProject = async (p,status) => {
         setTitle('전체 프로젝트');
         if(status === true){
-            const res = await axios.get(`http://localhost:8080/project/get-search-all-project?page=${p-1}&word=${searchWord}`,
+            const res = await axios.get(`http://localhost:8080/project/find-all-project`,
             {
-                headers: {Authorization: localStorage.getItem('token')}
+                headers: {Authorization: localStorage.getItem('token')},
+                params : {page : p}
             }
             );
+            console.log(res);
             setTotalElements(res.data.obj.totalElements);
             setProject(res.data.obj);
         }else {
             try{
-            const response = await axios.get(`http://localhost:8080/project/get-project?page=${p-1}`,
+            const response = await axios.get(`http://localhost:8080/project/find-all-project`,
             {
-                headers: {Authorization: localStorage.getItem('token')}
+                headers: {Authorization: localStorage.getItem('token')},
+                params : {
+                    page : 1
+                }
             }
             )
             setTotalElements(response.data.obj.totalElements);
@@ -102,7 +110,7 @@ const Project = () => {
                 <button onClick={getSearchProject}>검색</button>
                 <button onClick={()=>{nav('/project/create')}}>프로젝트 만들기</button>
             </section>
-            <ProjectComponent project={project} title={title}/>
+            <ProjectComponent projects={project} title={title}/>
             </section>
             <Pagination
                     activePage={page} // 현재 페이지

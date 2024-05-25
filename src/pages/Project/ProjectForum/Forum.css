@@ -4,6 +4,8 @@
     width: 100%;
     margin: auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .container table {
@@ -54,4 +56,12 @@
 .completed {
     color: green;
     font-weight: bold;
+}
+
+.project_option_select_menu_area {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
