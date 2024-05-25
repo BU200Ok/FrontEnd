@@ -21,7 +21,7 @@ const ProjectForumPost = () => {
     function SafeHTMLComponent({ html }) {
         const cleanHTML = DOMPurify.sanitize(html);
         return <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />;
-      }
+    }
 
     const getPostData = async () => {
         const response = await axios.get(`http://localhost:8080/project/get-project-forum-post?projectForumCode=${forumCode}`,

@@ -24,6 +24,8 @@ import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
 import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
 import InputModal from './pages/Modal/InputModal';
 import ErrorPage from './pages/Error/ErrorPage';
+import AnalysisTask from './pages/Project/ProjectForum/task/AnalysisTask/AnalysisTask';
+import PRD from './pages/Project/ProjectForum/task/AnalysisTask/PRD';
 
 
 function App() {
@@ -49,15 +51,18 @@ function App() {
             </Route>
 
           <Route element={<Sidebar/>}>
-              <Route path='/mypage' element={<MyPage/>}/>
-              <Route path='/project' element={<Project/>}/>
-              <Route path='/project/:projectCode' element={<ProjectForum/>}/>
-              <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
-              <Route path='/project/create' element={<ProjectCreate/>}/>
+            <Route path='/mypage' element={<MyPage/>}/>
+            <Route path='/project' element={<Project/>}/>
+            <Route path='/project/:projectCode' element={<ProjectForum/>}/>
+            <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
+            <Route path='/project/create' element={<ProjectCreate/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
             <Route path='/forum' element={<Forum/>}/>
             <Route path="/create" element={<ForumCreateComponent/>} />
             <Route path="/forum/:ForumCode" element={<ForumDetailListComponent/>} />
+            {/* <Route path="/progect/:projectCode/:process" element = {<AnalysisTask/>} /> */}
+            {/* <Route path="/Project/ProjectForum/task/AnalysisTask/AnalysisTask" element = {<AnalysisTask/>} />
+            <Route path="/Project/ProjectForum/task/AnalysisTask/PRD" element = {<PRD/>} /> */}
           </Route>
   
           </Routes>
