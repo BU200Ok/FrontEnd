@@ -34,7 +34,7 @@ const Project = () => {
     const getAllProject = async (p,status) => {
         setTitle('전체 프로젝트');
         if(status === true){
-            const res = await axios.get(`http://localhost:8080/project/find-all-project`,
+            const res = await axios.get(`http://localhost:8080/project/get-project`,
             {
                 headers: {Authorization: localStorage.getItem('token')},
                 params : {page : p}
@@ -45,7 +45,7 @@ const Project = () => {
             setProject(res.data.obj);
         }else {
             try{
-            const response = await axios.get(`http://localhost:8080/project/find-all-project`,
+            const response = await axios.get(`http://localhost:8080/project/get-project`,
             {
                 headers: {Authorization: localStorage.getItem('token')},
                 params : {

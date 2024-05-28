@@ -12,6 +12,7 @@ import ProjectSidebar from "./ProjectSidebar";
 import ProjectMember from "./ProjectMember";
 import ProjectSearch from "../../MyPage/ProjectSearch";
 import ProjectPostList from "./ProjectPostList";
+import AnalyzeScreen from "./AnalyzeScreen";
 
 //남은 기능 : 게시글 작성, 게시글 찾기, 프로젝트 생성
 
@@ -75,7 +76,7 @@ const ProjectForum = () => {
         <section style={{display:'flex'}}>
             { project ? 
             <section className="project-forum-sidebar">
-                {/* <ProjectSidebar projects = {project} /> */}
+                <ProjectSidebar projects = {project} />
                 {/* <LocationButton style={{marginTop:25}} location={'/project'}/>
                 <div style={{fontSize:25,marginTop:30}}>프로젝트 게시판</div>
                 <section className="project-forum-project-information">
@@ -87,7 +88,6 @@ const ProjectForum = () => {
                             :
                             (<img style={{pointerEvents:'none'}} src="./lock.png" width={30} height={30}/>)
                         }
-                        
                     </div>
                     <div style={{display:'flex',alignItems:'center'}}> */}
                         {/* <img src="./profile.png"/> */}
@@ -141,37 +141,12 @@ const ProjectForum = () => {
             }
             <section style={{flex : 1}}>
                 <div className="container">
+                    <h1>프로젝트 제목</h1>
                     <div className="container-top">
                         <ProjectOptionSelectMenu />
-                        <ProjectSearch/>
+                        {/* <ProjectSearch/> */}
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>상태</th>
-                                <th>제목</th>
-                                <th>작성일</th>
-                                <th>마감기한</th>
-                            </tr>
-                        </thead>
-                        {/* <ProjectPostList forum={forum} /> */}
-                        {/* <tbody>
-                            {
-                                forum ? 
-                                forum.map((value) => (
-                                    <tr onClick={()=>{navigate(`${value.projectForumCode}`)}} key={value.projectForumCode}>
-                                        <td>{value.projectForumCode}</td>
-                                        <td>{value.projectForumStatus}</td>
-                                        <td>{value.projectForumName}</td>
-                                        <td>{value.projectForumCreateTime}</td>
-                                        <td>{value.projectForumModifyDate}</td>
-                                    </tr>
-                                )) :
-                                (<div></div>)
-                            }
-                        </tbody> */}
-                    </table>
+                    <AnalyzeScreen/>
                 </div>
                 <Pagination
                     activePage={page} // 현재 페이지
