@@ -7,6 +7,12 @@ import Pagination from "react-js-pagination";
 import LocationButton from "../Component/LocationButton";
 import { openInputModalWithMassage } from "../../Modal/modalFunc";
 import { useSelector } from "react-redux";
+import ProjectOptionSelectMenu from "./ProjectOptionSelectMenu";
+import ProjectSidebar from "./ProjectSidebar";
+import ProjectMember from "./ProjectMember";
+import ProjectSearch from "../../MyPage/ProjectSearch";
+import ProjectPostList from "./ProjectPostList";
+import AnalyzeScreen from "./AnalyzeScreen";
 
 //남은 기능 : 게시글 작성, 게시글 찾기, 프로젝트 생성
 
@@ -19,7 +25,9 @@ const ProjectForum = () => {
     const [page, setPage] = useState(1);
 
     const value = useSelector((state)=>state.inputModalValue);
-
+    useEffect(()=> {
+        console.log(project);
+    },[])
     useEffect(()=>{
         console.log(value);
     },[value])
@@ -68,7 +76,8 @@ const ProjectForum = () => {
         <section style={{display:'flex'}}>
             { project ? 
             <section className="project-forum-sidebar">
-                <LocationButton style={{marginTop:25}} location={'/project'}/>
+                <ProjectSidebar projects = {project} />
+                {/* <LocationButton style={{marginTop:25}} location={'/project'}/>
                 <div style={{fontSize:25,marginTop:30}}>프로젝트 게시판</div>
                 <section className="project-forum-project-information">
                     <div style={{display:'flex'}}>
@@ -79,12 +88,11 @@ const ProjectForum = () => {
                             :
                             (<img style={{pointerEvents:'none'}} src="./lock.png" width={30} height={30}/>)
                         }
-                        
                     </div>
-                    <div style={{display:'flex',alignItems:'center'}}>
-                        <img src="./profile.png"/>
-                        <div style={{marginLeft:10,marginRight:137,width:100}}>{project.account.accountName}</div>
-                        <div  style={{display:'flex', flexDirection:'column',width:100}}>
+                    <div style={{display:'flex',alignItems:'center'}}> */}
+                        {/* <img src="./profile.png"/> */}
+                        {/* <div style={{marginLeft:10,marginRight:137,width:100}}>{project.account.accountName}</div> */}
+                        {/* <div  style={{display:'flex', flexDirection:'column',width:100}}>
                             <div>{project.account.team.department.departmentName}</div>
                             <div>{project.account.team.teamName}</div>
                         </div>
@@ -104,8 +112,9 @@ const ProjectForum = () => {
                         <div></div>
                     </div>
 
-                </section>
-                <section className="project-sidebar-bottom-container">
+                </section> */}
+                {/* <ProjectMember projects = {project} leftDay = {leftDay}/> */}
+                {/* <section className="project-sidebar-bottom-container">
                     <button onClick={addMember}>추가하기</button>
                     <div style={{textAlign:'start',fontSize:20}}>프로젝트 참여자</div>
                     <section className="project-sidebar-scrollable-container">
@@ -125,45 +134,19 @@ const ProjectForum = () => {
                         ))
                     }
                     </section>
-                </section>
+                </section> */}
             </section>
             : 
             <section></section>
             }
-            <section>
+            <section style={{flex : 1}}>
                 <div className="container">
-                    <button>분석</button>
-                    <button>설계</button>
-                    <button>구현</button>
-                    <button>테스트</button>
-                    <button>산출물</button>
-
-                    {/* <table>
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>상태</th>
-                                <th>제목</th>
-                                <th>작성일</th>
-                                <th>마감기한</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                forum ? 
-                                forum.map((value) => (
-                                    <tr onClick={()=>{navigate(`${value.projectForumCode}`)}} key={value.projectForumCode}>
-                                        <td>{value.projectForumCode}</td>
-                                        <td>{value.projectForumStatus}</td>
-                                        <td>{value.projectForumName}</td>
-                                        <td>{value.projectForumCreateTime}</td>
-                                        <td>{value.projectForumModifyDate}</td>
-                                    </tr>
-                                )) :
-                                (<div></div>)
-                            }
-                        </tbody>
-                    </table> */}
+                    <h1>프로젝트 제목</h1>
+                    <div className="container-top">
+                        <ProjectOptionSelectMenu />
+                        {/* <ProjectSearch/> */}
+                    </div>
+                    <AnalyzeScreen/>
                 </div>
                 <Pagination
                     activePage={page} // 현재 페이지

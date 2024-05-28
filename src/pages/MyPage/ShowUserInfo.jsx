@@ -14,7 +14,7 @@ const ShowUserInfo = (props) => {
             <div className='user_introduce'>
                 <h4 className='user_department'>{userInfo.team?.department?.departmentName} {userInfo.accountPosition}</h4>
                 <h1>{userInfo.accountName}</h1>
-                <h4>{userInfo.team?.teamName} / {userInfo.projectOperations}</h4>
+                <h4>{userInfo.departmentName} / {userInfo.teamName}</h4>
                 <h5>email: {userInfo.accountEmail}</h5>
             </div>
         </div>
