@@ -1,19 +1,20 @@
-import Pagination from 'react-bootstrap/Pagination';
 import './Forum.css';
 import React from 'react';
 
-const PaginationComponent = ({ activePage, numberOfPages, onPageChange }) => {
-    let items = [];
-    for (let number = 1; number <= numberOfPages; number++) {
-        items.push(
-            <Pagination.Item key={number} active={number === activePage} onClick={() => onPageChange(number)}>
-                {number}
-            </Pagination.Item>
-        );
-    }
-
+const PaginationComponent = ({ currentPage, totalPages, onPageChange }) => {
     return (
-        <Pagination>{items}</Pagination>
+        <div>
+            {[...Array(totalPages).keys()].map((number) => (
+                <button
+                    key={number + 1}
+                    onClick={() => onPageChange(number + 1)}
+                    disabled={currentPage === number + 1}
+                    style={{ marginRight: '10px' }}
+                >
+                    {number + 1}
+                </button>
+            ))}
+        </div>
     );
 };
 

@@ -32,3 +32,57 @@
     padding: 5px 10px; /* 상하 패딩을 줄임 */
     font-size: 16px; /* 폰트 크기 조절 */
 }
+
+.layout-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.sidebar {
+    flex: 1;
+    padding: 20px;
+}
+
+.main-content {
+    flex: 3;
+    padding: 20px;
+}
+
+.button-container {
+    width: 100%; /* 부모 요소의 너비를 가득 채움 */
+    display: flex;
+    justify-content: center; /* 버튼을 가운데로 정렬 */
+    margin-top: 10px; /* 필요에 따라 간격 조정 */
+}
+
+.button-container button {
+    width: 100%; /* 버튼의 너비를 부모 요소의 너비와 동일하게 설정 */
+}
+
+.table-container {
+    width: 100%; /* 테이블이 부모 요소의 너비를 가득 채우도록 설정 */
+    max-width: 1200px; /* 원하는 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table-container th:nth-child(3), .table-container td:nth-child(3) {
+    width: 50%; /* title 열의 너비 설정 */
+}
+
+.table-container th:nth-child(1), .table-container td:nth-child(1),
+.table-container th:nth-child(2), .table-container td:nth-child(2),
+.table-container th:nth-child(4), .table-container td:nth-child(4) {
+    width: 16.6%; /* 나머지 열의 너비 균등 설정 */
+}

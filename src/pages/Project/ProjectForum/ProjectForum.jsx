@@ -33,7 +33,7 @@ const ProjectForum = () => {
     },[projectCode])
 
     const getSidebarData = async () => {
-        const response = await axios.get(`http://localhost:8080/project/project-sidebar?projectCode=${projectCode}`,
+        const response = await axios.get(`http://localhost:8080/project/${projectCode}`,
         {
             headers: {Authorization: localStorage.getItem('token')}
         }
@@ -42,7 +42,7 @@ const ProjectForum = () => {
         dayUtil(response.data.obj.projectEnd);
     }
     const getForumData = async () => {
-        const response = await axios.get(`http://localhost:8080/project/project-forum-data?projectCode=${projectCode}`,
+        const response = await axios.get(`http://localhost:8080/project/${projectCode}`,
         {
             headers: {Authorization: localStorage.getItem('token')}
         }
@@ -82,14 +82,14 @@ const ProjectForum = () => {
                         }
                         
                     </div>
-                    <div style={{display:'flex',alignItems:'center'}}>
+                    {/* <div style={{display:'flex',alignItems:'center'}}>
                         <img src="./profile.png"/>
                         <div style={{marginLeft:10,marginRight:137,width:100}}>{project.account.accountName}</div>
                         <div  style={{display:'flex', flexDirection:'column',width:100}}>
                             <div>{project.account.team.department.departmentName}</div>
                             <div>{project.account.team.teamName}</div>
                         </div>
-                    </div>
+                    </div> */}
                     <div style={{display:'flex',marginTop:35,alignItems:'center'}}>
                         <div style={{fontSize:20, marginRight:20}}>마감기한</div>
                         <div>{project.projectEnd}</div>
@@ -106,7 +106,7 @@ const ProjectForum = () => {
                     </div>
 
                 </section>
-                <section className="project-sidebar-bottom-container">
+                {/* <section className="project-sidebar-bottom-container">
                     <button onClick={addMember}>추가하기</button>
                     <div style={{textAlign:'start',fontSize:20}}>프로젝트 참여자</div>
                     <section className="project-sidebar-scrollable-container">
@@ -126,7 +126,7 @@ const ProjectForum = () => {
                         ))
                     }
                     </section>
-                </section>
+                </section> */}
             </section>
             : 
             <section></section>

@@ -1,20 +1,22 @@
 import React from 'react';
 import './Forum.css'
+import Card from 'react-bootstrap/Card';
 
 const MyInfoComponent = (props) => {
     const { userInfo } = props;
     return (
-        <div className='right-align-container'>
-            <div className="card-container">
-                <div className="card">
-                    <div className="card-body">
-                        <h5 className="card-title fw-bold">{userInfo.team?.department?.departmentName} {userInfo.accountPosition}</h5>
-                        <h4>{userInfo.accountName}</h4>
-                        <p className="card-text">{userInfo.team?.teamName}/{userInfo.projectOperations}<br/>email: {userInfo.accountEmail}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Card style={{ width: '16rem' }}>
+            <Card.Body>
+                <br/>
+                <p>사진이 들어갈 예정</p>
+                <Card.Title><h3>{userInfo.accountName}</h3></Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{userInfo.teamName} {userInfo.accountPosition}</Card.Subtitle>
+                <Card.Text>
+                <p>email: {userInfo.accountEmail}</p>
+                </Card.Text>
+
+            </Card.Body>
+        </Card>
     );
 };
 

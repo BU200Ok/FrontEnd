@@ -18,6 +18,7 @@ import Sidebar from './components/Sidebar';
 import Attendance from './pages/Attendance/Attendance';
 import Forum from './pages/Forum/Forum';
 import ForumCreateComponent from './pages/Forum/post/ForumCreateComponent';
+import ForumEdit from './pages/Forum/post/ForumEdit'
 import ForumDetailListComponent from './pages/Forum/ForumDetailListComponent';
 import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
 import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
@@ -25,7 +26,7 @@ import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCrea
 import InputModal from './pages/Modal/InputModal';
 import ErrorPage from './pages/Error/ErrorPage';
 import AnalysisTask from './pages/Project/ProjectForum/task/AnalysisTask/AnalysisTask';
-import PRD from './pages/Project/ProjectForum/task/AnalysisTask/PRD';
+
 
 
 function App() {
@@ -54,15 +55,14 @@ function App() {
             <Route path='/mypage' element={<MyPage/>}/>
             <Route path='/project' element={<Project/>}/>
             <Route path='/project/:projectCode' element={<ProjectForum/>}/>
-            <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
             <Route path='/project/create' element={<ProjectCreate/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
             <Route path='/forum' element={<Forum/>}/>
             <Route path="/create" element={<ForumCreateComponent/>} />
             <Route path="/forum/:ForumCode" element={<ForumDetailListComponent/>} />
-            {/* <Route path="/progect/:projectCode/:process" element = {<AnalysisTask/>} /> */}
-            {/* <Route path="/Project/ProjectForum/task/AnalysisTask/AnalysisTask" element = {<AnalysisTask/>} />
-            <Route path="/Project/ProjectForum/task/AnalysisTask/PRD" element = {<PRD/>} /> */}
+            <Route path="/project/:projectCode/:taskType" element = {<AnalysisTask/>} />
+            <Route path="/project/:projectCode/forumCode/:projectForumCode" element={<ProjectForumPost />} />
+            <Route path="/forum/edit/:forumCode" element={<ForumEdit />} />
           </Route>
   
           </Routes>

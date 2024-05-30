@@ -4,7 +4,7 @@ import axios from 'axios';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {openModalWithMessage}  from '../../Modal/modalFunc';
-import MessageModal from '../../Modal/MessageModal';
+import Form from 'react-bootstrap/Form';
 import style from './post.css';
 
 const ForumCreateComponent = () => {
@@ -33,8 +33,6 @@ const ForumCreateComponent = () => {
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
         setForum({ ...forum, forumContent: data });
-        // const plainText = data.replace(/<\/?[^>]+(>|$)/g, "");
-        // setForum({ ...forum, forumContent: plainText });
     };
 
     // 폼 제출 처리
@@ -58,22 +56,28 @@ const ForumCreateComponent = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={style.forum}>
-            <input
-                className={style.title_input}
+        <div>
+        <forum onSubmit={handleSubmit} className={style.forum}>
+            <div className='post-container'>
+            <h1> 게시글 작성</h1>
+            <p>자유롭게 작성해보세요 !</p>
+            <hr/>   
+            <br/>
+            <Form.Control className="mb-5"
                 type="text"
-                placeholder="제목"
                 name="forumTitle"
                 value={forum.forumTitle}
                 onChange={handleChange}
+                placeholder='제목을 입력하세요'
+                aria-describedby="passwordHelpBlock"
             />
-            <input
-                className={style.title_input}
+            <Form.Control className="mb-5"
                 type="text"
-                placeholder="유형"
                 name="forumType"
                 value={forum.forumType}
                 onChange={handleChange}
+                placeholder='유형을 입력하세요'
+                aria-describedby="passwordHelpBlock"
             />
             <CKEditor
                 editor={ClassicEditor}
@@ -89,8 +93,18 @@ const ForumCreateComponent = () => {
                     console.log('Focus.', editor);
                 }}
             />
-            <button type="submit" className={style.submit_button}>게시글 작성</button>
-        </form>
+            </div>
+            <div className="button">
+                <button
+                    onClick={handleSubmit}
+                    className="btn btn-outline-success"
+                    style={{ textDecoration: 'none' }}
+                >
+                    작성
+                </button >
+            </div>
+        </forum>
+        </div>
     );
 };
 

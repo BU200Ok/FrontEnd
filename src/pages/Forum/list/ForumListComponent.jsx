@@ -25,28 +25,34 @@ const ForumListComponent = ({forum, userInfo}) => {
         console.log(userInfo);
     };
 
+    const formatDate = (dateTimeString) => {
+        const date = new Date(dateTimeString);
+        return date.toLocaleDateString(); // 로케일에 맞는 날짜 형식으로 변환
+    };
+
 
     return (
         <div>
-            <Table striped bordered hover>
+            
+            <Table striped bordered hover style={{ width: '100%' }}>
             <thead>
                 <tr>
                     <th>Num</th>
                     <th>Type</th>
-                    <th>Title</th>
-                    <th>Created</th>
+                    <th style={{ width: '80%' }}>Title</th>
+                    <th style={{ width: '10%' }}>Created</th>
                 </tr>
             </thead>
             <tbody>
-                    {currentForumData.map(item => (
-                        <tr key={item.forumCode} onClick={() => handleRowClick(item.forumCode)} style={{ cursor: 'pointer', borderBottom: '1px solid #ccc' }}>
-                            <td>{item.forumCode}</td>
-                            <td>{item.forumType}</td>
-                            <td>{item.forumTitle}</td>
-                            <td>{item.forumCreateTime}</td>
-                        </tr>
-                    ))}
-                </tbody>
+                {currentForumData.map(item => (
+                    <tr key={item.forumCode} onClick={() => handleRowClick(item.forumCode)} style={{ cursor: 'pointer', borderBottom: '1px solid #ccc' }}>
+                        <td>{item.forumCode}</td>
+                        <td>{item.forumType}</td>
+                        <td>{item.forumTitle}</td>
+                        <td>{formatDate(item.forumCreateTime)}</td>
+                    </tr>
+                ))}
+            </tbody>
             </Table>
             <PaginationComponent
                 activePage={activePage}
