@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import DeleteButton from './button/DeleteButton';
 import UpdateButton from './button/UpdateButton';
@@ -9,8 +9,14 @@ const ForumDetailListComponent = () => {
     const location = useLocation();
     const { userInfo } = location.state || {};
     const { ForumCode } = useParams();
-    const [forum, setForum] = useState(null);
-    const navigate = useNavigate();
+    const forumToEdit = location.state?.forum;
+    const [forum, setForum] = useState({
+        forumTitle: forumToEdit?.forumTitle || '',
+        forumContent: forumToEdit?.forumContent || '',
+        forumType: forumToEdit?.forumType || '',
+        accountCode: location.state?.userInfo?.accountCode || ''
+    });
+    
 
 
     useEffect(() => {
@@ -43,8 +49,8 @@ const ForumDetailListComponent = () => {
         <div className="forum-container">
             <div className="author-info">
                 {/* <img src={userInfo.userImage} alt={userInfo.accountName} className="author-image"/> */}
-                <p className="author-name">{userInfo.accountName}</p>
-                <p>{userInfo.teamName} {userInfo.accountPosition}</p>
+                <p className="author-name">{userInfo?.accountName}</p>
+                <p>{userInfo?.teamName} {userInfo?.accountPosition}</p>
             </div>
             <div className="post-content">
                 <h1 className="post-title">제목: {forum?.forumTitle }</h1>
@@ -55,8 +61,8 @@ const ForumDetailListComponent = () => {
                 <div className="action-buttons">
                     {isAuthor && (
                         <div>
-                            <DeleteButton forum={forum} userInfo={userInfo.accountCode}/>
-                            <UpdateButton forum={forum} userInfo={userInfo.accountCode} />
+                            <DeleteButton forum={forum} userInfo={userInfo}/>
+                            <UpdateButton forum={forum} userInfo={userInfo} />
                         </div>
                     )}
                 </div>

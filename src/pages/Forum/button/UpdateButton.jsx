@@ -6,7 +6,7 @@ const UpdateButton = ({ forum, userInfo }) => {
 
     const handleEditClick = () => {
         navigate(`/forum/edit/${forum.forumCode}`,{
-            state: { forum, userInfo } 
+            state: { forum, userInfo} 
         });
     };
 
