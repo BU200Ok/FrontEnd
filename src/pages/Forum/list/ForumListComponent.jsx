@@ -2,10 +2,7 @@ import React, {useState} from 'react';
 import Table from 'react-bootstrap/Table';
 import PaginationComponent from '../PagenationComponent'
 import '../Forum.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-
 
 const ForumListComponent = ({forum, userInfo}) => {
     const [activePage, setActivePage] = useState(1);
@@ -22,7 +19,6 @@ const ForumListComponent = ({forum, userInfo}) => {
 
     const handleRowClick = (forumCode) => {
         navigate(`/forum/${forumCode}`, { state: { userInfo } });
-        console.log(userInfo);
     };
 
     const formatDate = (dateTimeString) => {
@@ -30,10 +26,8 @@ const ForumListComponent = ({forum, userInfo}) => {
         return date.toLocaleDateString(); // 로케일에 맞는 날짜 형식으로 변환
     };
 
-
     return (
         <div>
-            
             <Table striped bordered hover style={{ width: '100%' }}>
             <thead>
                 <tr>
@@ -55,8 +49,8 @@ const ForumListComponent = ({forum, userInfo}) => {
             </tbody>
             </Table>
             <PaginationComponent
-                activePage={activePage}
-                numberOfPages={numberOfPages}
+                currentPage={activePage}
+                totalPages={numberOfPages}
                 onPageChange={setActivePage}
             />
         </div>

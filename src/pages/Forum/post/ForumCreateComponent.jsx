@@ -5,7 +5,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {openModalWithMessage}  from '../../Modal/modalFunc';
 import Form from 'react-bootstrap/Form';
-import style from './post.css';
+import style from './post.css'
 
 const ForumCreateComponent = () => {
     const location = useLocation();
@@ -63,6 +63,7 @@ const ForumCreateComponent = () => {
             <p>자유롭게 작성해보세요 !</p>
             <hr/>   
             <br/>
+
             <Form.Control className="mb-5"
                 type="text"
                 name="forumTitle"
@@ -81,6 +82,9 @@ const ForumCreateComponent = () => {
             />
             <CKEditor
                 editor={ClassicEditor}
+                config={{
+                    placeholder: "내용을 입력하세요.",
+                }}
                 data={forum.forumContent}
                 onReady={editor => {
                     console.log('Editor is ready to use!', editor);
@@ -93,6 +97,7 @@ const ForumCreateComponent = () => {
                     console.log('Focus.', editor);
                 }}
             />
+            
             </div>
             <div className="button">
                 <button

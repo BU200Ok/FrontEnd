@@ -34,6 +34,7 @@ const DepartmentList = ({forum}) => {
         console.log('accountCode:', userInfo.accountCode);
         navigate('/create', { state: { accountCode: userInfo.accountCode } });
     };
+
     
     return (
         <div>

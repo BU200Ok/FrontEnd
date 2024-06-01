@@ -3,7 +3,7 @@ import axios from 'axios';
 import ForumListComponent from './ForumListComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyInfoComponent from '../MyInfoComponent';
-import PaginationComponent from '../PagenationComponent';
+
 
 const MyList = ({forum}) => {
     const [userInfo, setUserInfo] = useState({});
@@ -34,7 +34,7 @@ const MyList = ({forum}) => {
             <hr/>
             <MyInfoComponent userInfo={userInfo}/>
             <ForumListComponent forum={forum} userInfo={userInfo}/>
-            <PaginationComponent></PaginationComponent>
+            
         </div>
     );
 };

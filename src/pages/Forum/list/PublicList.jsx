@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 
 const DepartmentList = ({forum}) => {
+
     return (
         <div>
             <br></br>
@@ -12,6 +13,7 @@ const DepartmentList = ({forum}) => {
             <ForumListComponent forum={forum} />
         </div>
     );
+    
 };
 
 export default DepartmentList;

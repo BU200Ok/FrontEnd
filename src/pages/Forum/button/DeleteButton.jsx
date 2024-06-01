@@ -8,6 +8,9 @@ const DeleteButton = ({forum}) => {
 
     
     const handleDeletePost = async () => {
+        // if (!isAuthor) {
+        //     openModalWithMessage('게시글 삭제 권한이 없습니다.');
+        // }
         try {
             await axios.delete(`http://localhost:8080/forum/delete/${forum.forumCode}`, {
             headers: {
@@ -23,15 +26,13 @@ const DeleteButton = ({forum}) => {
         }
     };
 
-
-
     return (
-        <button
+        (<button
             onClick={handleDeletePost}
             className="btn btn-outline-danger"
             style={{ textDecoration: 'none' }}>
             삭제
-        </button>
+        </button>)
     );
 };
 
