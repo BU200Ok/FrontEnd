@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ForumListComponent from './ForumListComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 import MyInfoComponent from '../MyInfoComponent';
 
 
 const MyList = ({forum}) => {
     const [userInfo, setUserInfo] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         getUserInfo();
@@ -26,15 +28,36 @@ const MyList = ({forum}) => {
             console.error(err);
         }
     }
+
+    const handleCreatePost = () => {
+        console.log('accountCode:', userInfo.accountCode);
+        navigate('/create', { state: { accountCode: userInfo.accountCode } });
+    };
     
     return (
         <div>
             <br/>
             <h1>내가 쓴 게시글</h1>
             <hr/>
-            <MyInfoComponent userInfo={userInfo}/>
-            <ForumListComponent forum={forum} userInfo={userInfo}/>
-            
+            <div className="layout-container">
+                <section className="sidebar">
+                    <MyInfoComponent userInfo={userInfo} />
+                    <div className="button-container">
+                        <div className="button-container">
+                            <button
+                                onClick={handleCreatePost}
+                                className="btn btn-outline-success"
+                                style={{ textDecoration: 'none' }}
+                            >
+                                게시글 작성
+                            </button >
+                        </div>
+                    </div>
+                </section>
+                <section className="main-content">
+                <ForumListComponent forum={forum} userInfo={userInfo} />
+                </section>
+            </div>
         </div>
     );
 };

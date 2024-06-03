@@ -25,7 +25,7 @@ import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
 import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
 import InputModal from './pages/Modal/InputModal';
 import ErrorPage from './pages/Error/ErrorPage';
-import AnalysisTask from './pages/Project/ProjectForum/task/AnalysisTask/AnalysisTask';
+
 
 
 
@@ -60,7 +60,6 @@ function App() {
             <Route path='/forum' element={<Forum/>}/>
             <Route path="/create" element={<ForumCreateComponent/>} />
             <Route path="/forum/:ForumCode" element={<ForumDetailListComponent/>} />
-            <Route path="/project/:projectCode/:taskType" element = {<AnalysisTask/>} />
             <Route path="/project/:projectCode/forumCode/:projectForumCode" element={<ProjectForumPost />} />
             <Route path="/forum/edit/:forumCode" element={<ForumEdit />} />
           </Route>

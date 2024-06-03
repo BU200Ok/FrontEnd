@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, } from 'react';
 import Table from 'react-bootstrap/Table';
-import PaginationComponent from '../PagenationComponent'
 import '../Forum.css';
 import { useNavigate } from 'react-router-dom';
+import Pagination from "react-js-pagination";
 
 const ForumListComponent = ({forum, userInfo}) => {
     const [activePage, setActivePage] = useState(1);
-    const itemsPerPage = 10;
+    const itemsPerPage = 8;
     const navigate = useNavigate();
 
     // 데이터 내림차순 정렬
@@ -19,6 +19,11 @@ const ForumListComponent = ({forum, userInfo}) => {
 
     const handleRowClick = (forumCode) => {
         navigate(`/forum/${forumCode}`, { state: { userInfo } });
+    };
+
+
+    const handlePageChange = (pageNumber) => {
+        setActivePage(pageNumber);
     };
 
     const formatDate = (dateTimeString) => {
@@ -34,7 +39,7 @@ const ForumListComponent = ({forum, userInfo}) => {
                     <th>Num</th>
                     <th>Type</th>
                     <th style={{ width: '80%' }}>Title</th>
-                    <th style={{ width: '10%' }}>Created</th>
+                    <th style={{ width: '15%' }}>Created</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,10 +53,14 @@ const ForumListComponent = ({forum, userInfo}) => {
                 ))}
             </tbody>
             </Table>
-            <PaginationComponent
-                currentPage={activePage}
-                totalPages={numberOfPages}
-                onPageChange={setActivePage}
+            <Pagination className="pagination-container"
+                    activePage={activePage} // 현재 페이지
+                    itemsCountPerPage={itemsPerPage} // 한 페이지랑 보여줄 아이템 갯수
+                    totalItemsCount={forum.length} // 총 아이템 갯수
+                    pageRangeDisplayed={4} // paginator의 페이지 범위
+                    prevPageText={"‹"} // "이전"을 나타낼 텍스트
+                    nextPageText={"›"} // "다음"을 나타낼 텍스트
+                    onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
             />
         </div>
     );

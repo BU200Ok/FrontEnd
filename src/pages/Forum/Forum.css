@@ -1,19 +1,4 @@
 
-/* 검은색 페이지네이션 버튼 */
-.pagination .page-link {
-    color: black; 
-    background-color: white;
-    border-color: black; 
-}
-
-/* 활성 페이지네이션 버튼 */
-.pagination .page-link.active {
-    color: white; 
-    background-color: black; 
-    border-color: black; 
-}
-
-
 .right-align-container {
     display: flex;
     justify-content: flex-end; /* 요소들을 컨테이너의 오른쪽 끝으로 정렬 */

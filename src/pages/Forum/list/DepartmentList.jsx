@@ -4,7 +4,7 @@ import ForumListComponent from './ForumListComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import MyInfoComponent from '../MyInfoComponent';
-import PaginationComponent from '../PagenationComponent';
+import '../Forum.css';
 
 const DepartmentList = ({forum}) => {
     const [userInfo, setUserInfo] = useState({});
@@ -61,7 +61,6 @@ const DepartmentList = ({forum}) => {
                 <section className="main-content">
                 <ForumListComponent forum={forum} userInfo={userInfo} />
                 </section>
-                {/* <PaginationComponent currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} /> */}
             </div>
         </div>
     );

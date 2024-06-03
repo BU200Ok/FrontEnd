@@ -14,7 +14,8 @@
     margin-top: 80px;
     padding: 10px;
     text-align: left;
-    border: 5px solid green;
+    /* border: 5px solid green; */
+    margin-left: 100px;
 }
 
 
@@ -28,7 +29,8 @@
     border-radius: 5px;
     margin-top: 40px;
     vertical-align: middle;
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    justify-content: flex-end;
 }
 
 .ck-editor__editable {

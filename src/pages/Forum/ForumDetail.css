@@ -2,15 +2,16 @@
     width: 100%; /* 전체 컨테이너의 넓이를 조정 */
     margin-top: 100px;
     padding: 10px; /* 패딩 조정 */
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 
 .author-info {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     margin-right: 15px;
     text-align: left;
+    padding: 20px;
 }
 
 .author-image {
@@ -34,7 +35,7 @@
 .post-content {
     padding: 20px;
     flex-grow: 1;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     text-align: left;
 }
 
@@ -59,7 +60,7 @@
 .action-buttons {
     display: flex; /* 버튼을 가로로 정렬 */
     gap: 10px; /* 버튼 사이의 간격 */
-    border: 1px solid red;
+    /* border: 1px solid red; */
     justify-content: flex-end;
 
 }

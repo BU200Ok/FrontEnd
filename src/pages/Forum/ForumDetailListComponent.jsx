@@ -4,6 +4,7 @@ import axios from 'axios';
 import DeleteButton from './button/DeleteButton';
 import UpdateButton from './button/UpdateButton';
 import style from './ForumDetail.css';
+import CommentComponent from './CommentComponent';
 
 const ForumDetailListComponent = () => {
     const location = useLocation();
@@ -46,6 +47,7 @@ const ForumDetailListComponent = () => {
 
 
     return (
+        <>
         <div className="forum-container">
             <div className="author-info">
                 {/* <img src={userInfo.userImage} alt={userInfo.accountName} className="author-image"/> */}
@@ -68,6 +70,7 @@ const ForumDetailListComponent = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

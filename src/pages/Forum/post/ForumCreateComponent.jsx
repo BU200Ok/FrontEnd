@@ -17,16 +17,21 @@ const ForumCreateComponent = () => {
         forumType: '',
         accountCode: accountCode || ''  // account 객체로 설정
     });
+    const [file, setFile] = useState([]);
 
     useEffect(() => {
-        console.log('Location state:', location.state);
-        console.log('Received Account Code:', accountCode);
+        // console.log('Received Account Code:', accountCode);
     }, [location]);
 
     // 제목과 유형 입력 처리
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForum({ ...forum, [name]: value });
+    };
+
+    // 파일 입력 처리
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
     };
 
     // CKEditor 내용 입력 처리
@@ -38,19 +43,41 @@ const ForumCreateComponent = () => {
     // 폼 제출 처리
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Submitting forum data:', forum); // 제출 데이터 확인
+        console.log('Submitting forum data:', forum);
+
         try {
+            // 포럼 생성 요청
             const response = await axios.post('http://localhost:8080/forum/create', forum, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': window.localStorage.getItem("token")
                 }
             });
-            console.log('폼 생성:', response.data);
+            console.log('Forum created:', response.data);
+
+            // 파일 업로드 요청
+            if (file) {
+                const formData = new FormData();
+                formData.append('forumCode', response.data.forumCode);
+                formData.append('file', file);
+                console.log('Appending file:', file.name);
+
+                try {
+                    const fileUploadResponse = await axios.post('http://localhost:8080/forum/file-upload', formData, {
+                        headers: {
+                            'Authorization': window.localStorage.getItem("token")
+                        }
+                    });
+                    console.log('File uploaded:', fileUploadResponse.data);
+                } catch (error) {
+                    console.error('File upload failed:', error);
+                }
+            }
+
             openModalWithMessage('게시글 작성이 완료되었습니다.');
             navigate('/forum');
         } catch (error) {
-            console.error('생성 실패:', error);
+            console.error('Creation failed:', error);
             openModalWithMessage('게시글 작성에 실패했습니다.');
         }
     };
@@ -64,7 +91,7 @@ const ForumCreateComponent = () => {
             <hr/>   
             <br/>
 
-            <Form.Control className="mb-5"
+            <Form.Control className="mb-4"
                 type="text"
                 name="forumTitle"
                 value={forum.forumTitle}
@@ -72,14 +99,19 @@ const ForumCreateComponent = () => {
                 placeholder='제목을 입력하세요'
                 aria-describedby="passwordHelpBlock"
             />
-            <Form.Control className="mb-5"
-                type="text"
+            <Form.Select className="mb-4"
                 name="forumType"
                 value={forum.forumType}
                 onChange={handleChange}
-                placeholder='유형을 입력하세요'
-                aria-describedby="passwordHelpBlock"
-            />
+            >
+                <option value="">유형을 선택하세요</option>
+                <option value="업데이트">업데이트</option>
+                <option value="회의">회의</option>
+            </Form.Select>
+            <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>파일 첨부</Form.Label>
+                <Form.Control type="file" name='file' multiple onChange={handleFileChange} />
+            </Form.Group>
             <CKEditor
                 editor={ClassicEditor}
                 config={{
