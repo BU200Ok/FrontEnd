@@ -95,6 +95,13 @@
     border-color: #3BA3DD;
     border-radius: 4px 4px 0px 0px;
 }
+.project_option_select_menu_area > .disableBtn{
+    background: #F2F2F2;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #DBDBDB;
+    border-radius: 4px 4px 0px 0px;
+}
 .project_option_select_menu_area > .disable{
     background: #F2F2F2;
     border-width: 1px 1px 0px 1px;
