@@ -7,8 +7,16 @@
     margin-left: 80px;
 }
 
-.author-info {
+
+
+.post-content{
+    padding: 20px;
+    flex-grow: 1;
     /* border: 1px solid green; */
+    text-align: left;
+}
+
+.author-info{
     margin-right: 15px;
     text-align: left;
     padding: 20px;
@@ -33,7 +41,7 @@
 
 
 .post-content {
-    padding: 20px;
+padding: 20px;
     flex-grow: 1;
     /* border: 1px solid green; */
     text-align: left;
@@ -70,4 +78,11 @@
     font-size: 16px; /* 버튼의 폰트 사이즈 */
     border-radius: 5px; /* 버튼의 모서리 둥글게 */
     cursor: pointer; /* 마우스 오버시 커서 변경 */
+}
+
+.comment-content{ 
+    /* border: 1px solid red; */
+    margin-left: 80px;
+    text-align: left;
+    padding: 10px;
 }

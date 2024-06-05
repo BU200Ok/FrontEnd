@@ -105,8 +105,9 @@ const ForumCreateComponent = () => {
                 onChange={handleChange}
             >
                 <option value="">유형을 선택하세요</option>
-                <option value="업데이트">업데이트</option>
+                <option value="업데이트">기술</option>
                 <option value="회의">회의</option>
+                <option value="공지">공지</option>
             </Form.Select>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>파일 첨부</Form.Label>

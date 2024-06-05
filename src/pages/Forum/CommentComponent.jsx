@@ -1,62 +1,88 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const CommentComponent = ({ forumCode }) => {
+const CommentComponent = ({ forumCode, accountCode }) => {
+    const [commentContent, setCommentContent] = useState('');
     const [comments, setComments] = useState([]);
-    const [newComment, setNewComment] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchComments();
-    }, [forumCode]);
+    }, []);
 
     const fetchComments = async () => {
         try {
-            const response = await axios.get(`/api/comments/forum/${forumCode}`);
-            setComments(response.data);
+            const response = await axios.get('http://localhost:8080/forum/comment/list', {
+                headers: {
+                    'Authorization': window.localStorage.getItem("token")
+                }
+            });
+            console.log('댓글 조회 성공:', response.data.obj);
+            setComments(response.data.obj);
         } catch (error) {
-            console.error("Failed to fetch comments", error);
+            console.error('댓글 조회 실패:', error);
         }
     };
 
-    const handleCommentChange = (e) => {
-        setNewComment(e.target.value);
-    };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    const handleCommentSubmit = async (e) => {
-        e.preventDefault();
         try {
-            const accountCode = window.localStorage.getItem("accountCode"); // 예: 사용자 ID를 로컬 스토리지에서 가져옴
-            await axios.post(`/api/comments/forum/${forumCode}?accountCode=${accountCode}`, 
-                { content: newComment }, // 객체로 전송
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': window.localStorage.getItem("token")
-                    }
+            const newComment = {
+                commentContent,
+                forumCode: forumCode,
+                accountCode: accountCode
+            };
+            console.log('aaa', newComment)
+            const response = await axios.post('http://localhost:8080/forum/comment/create', newComment, {
+                headers: {
+                    'Authorization': window.localStorage.getItem("token")
                 }
-            );
-            setNewComment("");
+            });
+            console.log('댓글 작성 성공:', response.data);
             fetchComments();
         } catch (error) {
-            console.error("Failed to submit comment", error);
+            console.error('댓글 작성 실패:', error);
+        }
+    };
+
+    const handleDelete = async (commentCode) => {
+        try {
+            await axios.delete(`http://localhost:8080/forum/comment/delete/${commentCode}`, {
+                headers: {
+                    'Authorization': window.localStorage.getItem("token")
+                }
+            });
+            console.log('댓글 삭제 성공');
+            fetchComments();
+        } catch (error) {
+            console.error('댓글 삭제 실패:', error);
         }
     };
 
     return (
         <div>
-            <form onSubmit={handleCommentSubmit}>
-                <textarea
-                    value={newComment}
-                    onChange={handleCommentChange}
-                    placeholder="댓글을 입력하세요"
-                />
-                <button type="submit">댓글 작성</button>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="commentContent">Comment:</label>
+                    <textarea
+                        id="commentContent"
+                        value={commentContent}
+                        onChange={(e) => setCommentContent(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">Submit</button>
             </form>
-            <ul>
+            <div>
                 {comments.map(comment => (
-                    <li key={comment.commentCode}>{comment.commentContext}</li>
+                    <div key={comment.commentCode}>
+                        <p>{comment.commentContent}</p>
+                        <button onClick={() => handleDelete(comment.commentCode)}>Delete</button>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

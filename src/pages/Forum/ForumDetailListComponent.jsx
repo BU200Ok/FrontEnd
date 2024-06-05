@@ -5,6 +5,11 @@ import DeleteButton from './button/DeleteButton';
 import UpdateButton from './button/UpdateButton';
 import style from './ForumDetail.css';
 import CommentComponent from './CommentComponent';
+import CommentCreate from './comment/CommentCreate';
+import CommentList from './comment/CommentList';
+import CommentButton from './comment/CommentButton';
+import { Card, Container, Row, Col } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const ForumDetailListComponent = () => {
     const location = useLocation();
@@ -49,12 +54,17 @@ const ForumDetailListComponent = () => {
     return (
         <>
         <div className="forum-container">
-            <div className="author-info">
-                {/* <img src={userInfo.userImage} alt={userInfo.accountName} className="author-image"/> */}
-                <p className="author-name">{userInfo?.accountName}</p>
+            <div className='author-info'>
+                <p>{userInfo?.accountName}</p>
                 <p>{userInfo?.teamName} {userInfo?.accountPosition}</p>
             </div>
-            <div className="post-content">
+                {/* <Card style={{ width: '14rem' }}>
+                <Card.Header>{userInfo?.accountName}</Card.Header>
+                <ListGroup variant="flush">
+                    <ListGroup.Item>{userInfo?.teamName} {userInfo?.accountPosition}</ListGroup.Item>
+                </ListGroup>
+                </Card> */}
+                <div className="post-content">
                 <h1 className="post-title">제목: {forum?.forumTitle }</h1>
                 <p className="post-date">작성일: {formatDate(forum?.forumCreateTime)}</p>
                 <p className="post-type">유형: {forum?.forumType}</p>
@@ -70,6 +80,10 @@ const ForumDetailListComponent = () => {
                 </div>
             </div>
         </div>
+        <div className='comment-content'>
+                <CommentList forumCode={forum?.forumCode} accountCode={forum?.accountCode}/>
+                <CommentCreate forumCode={forum?.forumCode} accountCode={forum?.accountCode}/>
+            </div>
         </>
     );
 };
