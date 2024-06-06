@@ -66,8 +66,13 @@ const ProjectForum = () => {
             }
             <section style={{flex : 1}}>
                 <div className="container">
-                    <h1>{forum.projectName}</h1>
-                    <h4>{forum.projectStart}~{forum.projectEnd}</h4>
+                    <div className="project-header">
+                        <h1>{forum.projectName}</h1>
+                        <h4>{forum.projectStart}~{forum.projectEnd}</h4>
+                    </div>
+                    <div className='project-explain-square'>
+                    {forum.projectDescription}
+                    </div>
                     <div className="container-top">
                         <ProjectOptionSelectMenu selectedOption={projectOption} optionChange={setProjectOption}/>
                         {/* <ProjectSearch/> */}
