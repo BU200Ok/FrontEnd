@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Progress from './Progress';
-import Explain from './Explain';
+import Inprogress from './Inprogress';
 import OpenStatus from './OpenStatus';
 import ProjectPosts from './ProjectPosts';
 import axios from 'axios';
 import Pagination from "react-js-pagination";
+import DesignMenu from './projectTaskTypeMenus/DesignMenu';
+import ImplementMenu from './projectTaskTypeMenus/ImplementMenu';
+import AnalyzeMenu from './projectTaskTypeMenus/AnalyzeMenu';
+import OutputsMenu from './projectTaskTypeMenus/OutputsMenu';
+import TestMenu from './projectTaskTypeMenus/TestMenu';
 
 const AnalyzeScreen = ({projectCode, projectOption}) => {
     const [anyPost, setAnyPost] = useState("needs");
@@ -25,7 +30,7 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
     }, [projectOption]);
     useEffect(()=>{
         getPostData();
-    }, [anyPost]);
+    }, [anyPost,page]);
     const getPostData = async() => {
         try{
             const response = await axios.get(`http://localhost:8080/projects/${projectCode}/tasks/${projectOption}/${anyPost}`,{
@@ -55,19 +60,33 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
             console.error(err);
         }
     }
+
+    const renderMenu = () => {
+        switch (projectOption) {
+            case 1:
+                return <AnalyzeMenu setAnyPost={setAnyPost} />;
+            case 2:
+                return <DesignMenu setAnyPost={setAnyPost} />;
+            case 3:
+                return <ImplementMenu setAnyPost={setAnyPost} />;
+            case 4:
+                return <TestMenu setAnyPost={setAnyPost} />;
+            case 5:
+                return <OutputsMenu setAnyPost={setAnyPost} />;
+            default:
+                return null;
+        }
+    }
+
     return (
         <div>
             <div className='project-info-area'>
                 <Progress tasks = {projectDoneTasks}/>
-                <Explain tasks = {projectInprogressTasks}/>
+                <Inprogress tasks = {projectInprogressTasks}/>
                 <OpenStatus tasks = {projectTodoTasks}/>
             </div>
             <br></br>
-            <div className='analyze-option-btn-area'>
-                <button className='analyze-option-btn' onClick={() => setAnyPost("needs")}>요구분석</button>
-                <button className='analyze-option-btn' onClick={() => setAnyPost("environment")}>환경분석</button>
-                <button className='analyze-option-btn' onClick={() => setAnyPost("swot")}>SWOT</button>
-            </div>
+            {renderMenu()}
             <ProjectPosts posts={projectPosts}/>
             <Pagination
                     activePage={page} // 현재 페이지
