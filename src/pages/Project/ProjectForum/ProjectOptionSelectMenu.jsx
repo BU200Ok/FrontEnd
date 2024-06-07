@@ -16,13 +16,16 @@ const ProjectOptionSelectMenu = () => {
     };
 
     return (
-        <div className='project_option_select_menu_area'>
-            <button onClick={() => handleButtonClick('analyze')}>분석</button>
-            <button onClick={() => handleButtonClick('설계')}>설계</button>
-            <button onClick={() => handleButtonClick('구현')}>구현</button>
-            <button onClick={() => handleButtonClick('테스트')}>테스트</button>
-            <button onClick={() => handleButtonClick('산출물')}>산출물</button>
-            <button onClick={() => handleButtonClick('선택 안함')}>선택 안함</button>
+        <div className='option_select_menu_main'>
+            <div className='project_option_select_menu_area'>
+                <button>분석</button>
+                <button>설계</button>
+                <button>구현</button>
+                <button>테스트</button>
+                <button>산출물</button>
+                <button>선택 안함</button>
+            </div>
+            <hr/>
         </div>
     );
 };

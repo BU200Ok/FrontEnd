@@ -8,6 +8,11 @@ import LocationButton from "../Component/LocationButton";
 import { openInputModalWithMassage } from "../../Modal/modalFunc";
 import { useSelector } from "react-redux";
 import ProjectOptionSelectMenu from "./ProjectOptionSelectMenu";
+import ProjectSidebar from "./ProjectSidebar";
+import ProjectMember from "./ProjectMember";
+import ProjectSearch from "../../MyPage/ProjectSearch";
+import ProjectPostList from "./ProjectPostList";
+import AnalyzeScreen from "./AnalyzeScreen";
 
 //남은 기능 : 게시글 작성, 게시글 찾기, 프로젝트 생성
 
@@ -16,22 +21,21 @@ const ProjectForum = () => {
     const [project, setProject] = useState(null);
     const [forum, setForum] = useState([]);
     const navigate = useNavigate();
-    const [leftDay, setLeftDay] = useState();
+    // const [leftDay, setLeftDay] = useState();
     const [page, setPage] = useState(1);
 
     const value = useSelector((state)=>state.inputModalValue);
-
     useEffect(()=>{
         console.log(value);
     },[value])
 
     useEffect(()=>{
         if(project === null && projectCode){
-            getSidebarData(projectCode);
+            // getSidebarData(projectCode);
             getForumData(projectCode);
+            console.log(forum.obj);
         }
     },[projectCode])
-
     const getSidebarData = async () => {
         const response = await axios.get(`http://localhost:8080/project/${projectCode}`,
         {
@@ -39,10 +43,10 @@ const ProjectForum = () => {
         }
         )
         setProject(response.data.obj);
-        dayUtil(response.data.obj.projectEnd);
+        // dayUtil(response.data.obj.projectEnd);
     }
     const getForumData = async () => {
-        const response = await axios.get(`http://localhost:8080/project/${projectCode}`,
+        const response = await axios.get(`http://localhost:8080/projects/${projectCode}`,
         {
             headers: {Authorization: localStorage.getItem('token')}
         }
@@ -50,13 +54,7 @@ const ProjectForum = () => {
         setForum(response.data.obj);
         console.log(response.data);
     }
-    const dayUtil = (end) => {
-            const today = new Date();
-            const endDate = new Date(end);
-            const timeDiff = endDate - today;
-            const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-            setLeftDay(days);
-    }
+
     const handlePageChange = (page) => {    //페이지 누름
         setPage(page);  //여기서 시간이걸림
         sessionStorage.setItem('currentPage',page); 
@@ -67,100 +65,22 @@ const ProjectForum = () => {
     }
     return(
         <section style={{display:'flex'}}>
-            { project ? 
+            { forum.projectCode ? 
             <section className="project-forum-sidebar">
-                <LocationButton style={{marginTop:25}} location={'/project'}/>
-                <div style={{fontSize:25,marginTop:30}}>프로젝트 게시판</div>
-                <section className="project-forum-project-information">
-                    <div style={{display:'flex'}}>
-                        <div style={{fontSize:25,marginRight:29}}>{project.projectName}</div>
-                        {
-                            project.projectOpenStatus == 1 ?
-                            (<img style={{pointerEvents:'none'}} src="./lock-open.png" width={30} height={30}/>)
-                            :
-                            (<img style={{pointerEvents:'none'}} src="./lock.png" width={30} height={30}/>)
-                        }
-                        
-                    </div>
-                    {/* <div style={{display:'flex',alignItems:'center'}}>
-                        <img src="./profile.png"/>
-                        <div style={{marginLeft:10,marginRight:137,width:100}}>{project.account.accountName}</div>
-                        <div  style={{display:'flex', flexDirection:'column',width:100}}>
-                            <div>{project.account.team.department.departmentName}</div>
-                            <div>{project.account.team.teamName}</div>
-                        </div>
-                    </div> */}
-                    <div style={{display:'flex',marginTop:35,alignItems:'center'}}>
-                        <div style={{fontSize:20, marginRight:20}}>마감기한</div>
-                        <div>{project.projectEnd}</div>
-                        {
-                            leftDay < 0 ? (<div style={{marginLeft:50,color:'red'}}>마감</div>)
-                            :
-                            <div style={{marginLeft:50,color:'red'}}>{leftDay}일 남음</div>
-                        }
-                        
-                    </div>
-                    
-                    <div className="project-">
-                        <div></div>
-                    </div>
-
-                </section>
-                {/* <section className="project-sidebar-bottom-container">
-                    <button onClick={addMember}>추가하기</button>
-                    <div style={{textAlign:'start',fontSize:20}}>프로젝트 참여자</div>
-                    <section className="project-sidebar-scrollable-container">
-                    {
-                        project.member.map((mem)=>(
-                            <div className="project-sidebar-scrollable-member" key={mem.accountCode.accountCode} style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                                <div className="project-sidebar-profile-img">
-                                </div>
-                                <div>{mem.accountCode.accountName}</div>
-                                <div>
-                                    <div>
-                                        <div style={{fontSize:14}}>{mem.accountCode.team.department.departmentName}</div>
-                                        <div>{mem.accountCode.accountPosition}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    }
-                    </section>
-                </section> */}
+                <ProjectSidebar projects = {forum} />
+                <ProjectMember projects = {forum} />
             </section>
             : 
             <section></section>
             }
-            <section>
+            <section style={{flex : 1}}>
                 <div className="container">
-                    <ProjectOptionSelectMenu />
-
-                    {/* <table>
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>상태</th>
-                                <th>제목</th>
-                                <th>작성일</th>
-                                <th>마감기한</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                forum ? 
-                                forum.map((value) => (
-                                    <tr onClick={()=>{navigate(`${value.projectForumCode}`)}} key={value.projectForumCode}>
-                                        <td>{value.projectForumCode}</td>
-                                        <td>{value.projectForumStatus}</td>
-                                        <td>{value.projectForumName}</td>
-                                        <td>{value.projectForumCreateTime}</td>
-                                        <td>{value.projectForumModifyDate}</td>
-                                    </tr>
-                                )) :
-                                (<div></div>)
-                            }
-                        </tbody>
-                    </table> */}
+                    <h1>프로젝트 제목</h1>
+                    <div className="container-top">
+                        <ProjectOptionSelectMenu />
+                        {/* <ProjectSearch/> */}
+                    </div>
+                    <AnalyzeScreen/>
                 </div>
                 <Pagination
                     activePage={page} // 현재 페이지

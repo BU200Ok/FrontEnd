@@ -4,6 +4,7 @@ import '../Forum.css';
 import { useNavigate } from 'react-router-dom';
 import Pagination from "react-js-pagination";
 
+
 const ForumListComponent = ({forum, userInfo}) => {
     const [activePage, setActivePage] = useState(1);
     const itemsPerPage = 8;

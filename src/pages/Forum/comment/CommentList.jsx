@@ -40,7 +40,6 @@ const CommentList = ({ forumCode }) => {
             console.error('댓글 삭제 실패:', error);
         }
     };
-
     return (
         <div>
             {comments.map(comment => (

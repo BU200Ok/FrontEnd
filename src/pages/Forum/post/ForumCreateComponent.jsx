@@ -30,9 +30,9 @@ const ForumCreateComponent = () => {
     };
 
     // 파일 입력 처리
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
+    // const handleFileChange = (e) => {
+    //     setFile(e.target.files[0]);
+    // };
 
     // CKEditor 내용 입력 처리
     const handleEditorChange = (event, editor) => {
@@ -44,31 +44,30 @@ const ForumCreateComponent = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Submitting forum data:', forum);
-
         try {
             // 포럼 생성 요청
             const response = await axios.post('http://localhost:8080/forum/create', forum, {
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': window.localStorage.getItem("token")
                 }
             });
             console.log('Forum created:', response.data);
 
-            // 파일 업로드 요청
+            const forumCode = response.data.obj.forumCode;
+            console.log('Forum', forumCode);
+            // 파일 업로드 요청 
             if (file) {
                 const formData = new FormData();
-                formData.append('forumCode', response.data.forumCode);
                 formData.append('file', file);
                 console.log('Appending file:', file.name);
-
                 try {
-                    const fileUploadResponse = await axios.post('http://localhost:8080/forum/file-upload', formData, {
+                    const fileUploadResponse = await axios.post(`http://localhost:8080/forum-file/uploads/${forumCode}`, formData, {
                         headers: {
-                            'Authorization': window.localStorage.getItem("token")
+                            'Authorization': window.localStorage.getItem("token"),
+                            'Content-Type': 'multipart/form-data'
                         }
                     });
-                    console.log('File uploaded:', fileUploadResponse.data);
+                    console.log('바뀐 파일 이름은 ? :', fileUploadResponse.data);
                 } catch (error) {
                     console.error('File upload failed:', error);
                 }
@@ -90,7 +89,6 @@ const ForumCreateComponent = () => {
             <p>자유롭게 작성해보세요 !</p>
             <hr/>   
             <br/>
-
             <Form.Control className="mb-4"
                 type="text"
                 name="forumTitle"
@@ -111,7 +109,7 @@ const ForumCreateComponent = () => {
             </Form.Select>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>파일 첨부</Form.Label>
-                <Form.Control type="file" name='file' multiple onChange={handleFileChange} />
+                <Form.Control type="file" name='file' multiple onChange={(e)=>{setFile(e.target.files[0]);}} />
             </Form.Group>
             <CKEditor
                 editor={ClassicEditor}
