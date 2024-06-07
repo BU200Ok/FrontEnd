@@ -10,6 +10,7 @@ import ImplementMenu from './projectTaskTypeMenus/ImplementMenu';
 import AnalyzeMenu from './projectTaskTypeMenus/AnalyzeMenu';
 import OutputsMenu from './projectTaskTypeMenus/OutputsMenu';
 import TestMenu from './projectTaskTypeMenus/TestMenu';
+import Search from './Search';
 
 const AnalyzeScreen = ({projectCode, projectOption}) => {
     const [anyPost, setAnyPost] = useState("needs");
@@ -27,6 +28,18 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
 
     useEffect(()=> {
         getTaskListData();
+        switch(projectOption){
+            case 2:
+                return setAnyPost("architecture");
+            case 3:
+                return setAnyPost("prototype");
+            case 4:
+                return setAnyPost("test");
+            case 5:
+                return setAnyPost("menual");
+            default :
+                return setAnyPost("needs");
+        }
     }, [projectOption]);
     useEffect(()=>{
         getPostData();
@@ -86,7 +99,10 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
                 <OpenStatus tasks = {projectTodoTasks}/>
             </div>
             <br></br>
-            {renderMenu()}
+            <div style={{display:'flex'}}>
+                {renderMenu()}
+                <Search setSearchResult = {setProjectPosts} projectCode={projectCode} projectOption={projectOption} anyPost={anyPost} page={page-1}/>
+            </div>
             <ProjectPosts posts={projectPosts}/>
             <Pagination
                     activePage={page} // 현재 페이지
