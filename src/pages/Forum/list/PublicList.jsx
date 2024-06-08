@@ -9,11 +9,19 @@ const DepartmentList = ({forum}) => {
     const [userInfo, setUserInfo] = useState({});
     return (
         <div>
-            <br></br>
-            <h1>공지사항</h1>
-            <hr></hr>
-            <MyInfoComponent userInfo={userInfo} setUserInfo={setUserInfo}/>
-            <ForumListComponent forum={forum} />
+            <header>
+                <br />
+                <h1>공지사항</h1>
+                <hr />
+            </header>
+            <div className="layout-container">
+                <section className="sidebar">
+                <MyInfoComponent setUserInfo={setUserInfo} userInfo={userInfo} />
+                </section>
+                    <section className="main-content">
+                        <ForumListComponent forum={forum} userInfo={userInfo} />
+                    </section>
+            </div>
         </div>
     );
     

@@ -7,7 +7,7 @@ import Pagination from "react-js-pagination";
 
 const ForumListComponent = ({forum, userInfo}) => {
     const [activePage, setActivePage] = useState(1);
-    const itemsPerPage = 8;
+    const itemsPerPage = 10;
     const navigate = useNavigate();
 
     // 데이터 내림차순 정렬
@@ -33,36 +33,42 @@ const ForumListComponent = ({forum, userInfo}) => {
     };
 
     return (
-        <div>
-            <Table striped bordered hover style={{ width: '100%' }}>
-            <thead>
-                <tr>
-                    <th>Num</th>
-                    <th>Type</th>
-                    <th style={{ width: '80%' }}>Title</th>
-                    <th style={{ width: '15%' }}>Created</th>
-                </tr>
-            </thead>
-            <tbody>
-                {currentForumData.map(item => (
-                    <tr key={item.forumCode} onClick={() => handleRowClick(item.forumCode)} style={{ cursor: 'pointer', borderBottom: '1px solid #ccc' }}>
-                        <td>{item.forumCode}</td>
-                        <td>{item.forumType}</td>
-                        <td>{item.forumTitle}</td>
-                        <td>{formatDate(item.forumCreateTime)}</td>
-                    </tr>
-                ))}
-            </tbody>
-            </Table>
-            <Pagination className="pagination-container"
-                    activePage={activePage} // 현재 페이지
-                    itemsCountPerPage={itemsPerPage} // 한 페이지랑 보여줄 아이템 갯수
-                    totalItemsCount={forum.length} // 총 아이템 갯수
-                    pageRangeDisplayed={4} // paginator의 페이지 범위
-                    prevPageText={"‹"} // "이전"을 나타낼 텍스트
-                    nextPageText={"›"} // "다음"을 나타낼 텍스트
-                    onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
-            />
+        <div className='forum-list-container'>
+            <div className='forum-table-wrapper'>
+                <Table striped bordered hover className='forum-table'>
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Type</th>
+                            <th >Title</th>
+                            <th >Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentForumData.map(item => (
+                            <tr key={item.forumCode} onClick={() => handleRowClick(item.forumCode)} style={{ cursor: 'pointer', borderBottom: '1px solid #ccc' }}>
+                                <td>{item.forumCode}</td>
+                                <td>{item.forumType}</td>
+                                <td>{item.forumTitle}</td>
+                                <td>{formatDate(item.forumCreateTime)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </div>
+            <div className="pagination-wrapper">
+                <div className="pagination-container">
+                    <Pagination
+                        activePage={activePage} // 현재 페이지
+                        itemsCountPerPage={itemsPerPage} // 한 페이지랑 보여줄 아이템 갯수
+                        totalItemsCount={forum.length} // 총 아이템 갯수
+                        pageRangeDisplayed={4} // paginator의 페이지 범위
+                        prevPageText={"‹"} // "이전"을 나타낼 텍스트
+                        nextPageText={"›"} // "다음"을 나타낼 텍스트
+                        onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
+                    />
+                </div>
+            </div>
         </div>
     );
 };

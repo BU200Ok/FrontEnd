@@ -105,7 +105,7 @@ const ForumDetailListComponent = () => {
         <div className='comment-content'>
                 <CommentList forumCode={forum?.forumCode} accountCode={forum?.accountCode}/>
                 <CommentCreate forumCode={forum?.forumCode} accountCode={forum?.accountCode}/>
-            </div>
+        </div>
         </>
     );
 };
