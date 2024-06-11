@@ -60,7 +60,7 @@ function App() {
             <Route path='/forum' element={<Forum/>}/>
             <Route path="/create" element={<ForumCreateComponent/>} />
             <Route path="/forum/:ForumCode" element={<ForumDetailListComponent/>} />
-            <Route path="/project/:projectCode/forumCode/:projectForumCode" element={<ProjectForumPost />} />
+            <Route path="/project/:projectCode/:projectForumCode" element={<ProjectForumPost />} />
             <Route path="/forum/edit/:forumCode" element={<ForumEdit />} />
           </Route>
   

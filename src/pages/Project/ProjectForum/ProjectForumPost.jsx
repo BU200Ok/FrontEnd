@@ -61,7 +61,7 @@ const ProjectForumPost = () => {
                 <div>{forumCode}번 게시글</div>
             </header>
             <main>
-            {/* {post?(post.map((p)=>(
+            {post?(post.map((p)=>(
                     <article className="project-forum-post">
                         <header>
                             <div>게시글 코드 : {p.taskPostCode}</div>
@@ -74,7 +74,7 @@ const ProjectForumPost = () => {
                     </article>
                     ))
                 ) : (<div>아무 것도 없음</div>)
-            } */}
+            }
             </main>
         </section>
     )
