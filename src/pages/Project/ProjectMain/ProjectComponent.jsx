@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './ProjectComponent.css';
 import { useNavigate } from 'react-router-dom';
+
 const ProjectComponent = ({projects, content}) => {
     const [project,setProject] = useState([]);
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const ProjectComponent = ({projects, content}) => {
                         </div>
                     </div>
                 </div>
+                
             ))
             setProject(arr);
         } else {
