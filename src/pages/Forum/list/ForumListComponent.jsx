@@ -55,8 +55,8 @@ const ForumListComponent = ({forum, userInfo}) => {
                     ))}
                 </tbody>
             </Table>
-            <div className="pagination-wrapper">
-                <div className="pagination-container">
+            {/* <div className="pagination-wrapper">
+                <div className="pagination-container"> */}
                     <Pagination
                         activePage={activePage} // 현재 페이지
                         itemsCountPerPage={itemsPerPage} // 한 페이지랑 보여줄 아이템 갯수
@@ -66,8 +66,8 @@ const ForumListComponent = ({forum, userInfo}) => {
                         nextPageText={"›"} // "다음"을 나타낼 텍스트
                         onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
                     />
-                </div>
-            </div>
+                {/* </div>
+            </div> */}
         </div>
         
         </>

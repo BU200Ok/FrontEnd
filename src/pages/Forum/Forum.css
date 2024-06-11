@@ -1,8 +1,9 @@
 .layout-container {
-    width: 150%;
+    width: 1120px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    gap: 30px;
     /* border: 3px solid green; */
 }
 
@@ -69,7 +70,7 @@
 .header { 
     /* border: 5px solid green; */
     padding: 20px;
-    width: 150%;
+    width: 100%;
     justify-content: flex-end;
 }
 
