@@ -5,6 +5,8 @@ import './ProjectForumPost.css';
 import './ProjectForum.css';
 import DOMPurify from 'dompurify';
 import LocationButton from "../Component/LocationButton";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { openInputModalWithMassage, openModalWithMessage } from "../../Modal/modalFunc";
 import { useSelector } from "react-redux";
 import ProjectMember from "./ProjectMember";
@@ -46,36 +48,45 @@ const ProjectForumPost = () => {
     }
 
     return(
-        <section style={{display: "flex"}}>
+        <section style={{display:"flex"}}>
             
-            { forum.projectCode ? 
-            <section className="project-forum-sidebar">
-                <LocationButton location={`/project/${projectCode}`}/>
-                <ProjectMember projects = {forum} />
-            </section>
-            : 
-            <section></section>
-            }
-            <header className="project-forum-post-header">
-                <div>{projectCode}번 프로젝트</div>
-                <div>{forumCode}번 게시글</div>
-            </header>
-            <main>
-            {post?(post.map((p)=>(
-                    <article className="project-forum-post">
-                        <header>
-                            <div>게시글 코드 : {p.taskPostCode}</div>
-                            <div>작성일 : {p.taskPostTime}</div>
-                            <div>작성자 : {p.teamName}, {p.accountName}</div>
-                        </header>
-                        <main>
-                            <SafeHTMLComponent html={p.projectForumPostContent} />
-                        </main>
-                    </article>
-                    ))
-                ) : (<div>아무 것도 없음</div>)
-            }
-            </main>
+            <div style={{display:"flex", flexDirection:"column"}}>
+                { forum.projectCode ? 
+                <section className="project-forum-sidebar">
+                    <LocationButton location={`/project/${projectCode}`}/>
+                    <ProjectMember projects = {forum} />
+                </section>
+                : 
+                <section></section>
+                }
+            </div>
+            <div style={{display:"flex", flexDirection:"column"}}>
+                <header className="project-forum-post-header">
+                    <div>{projectCode}번 프로젝트</div>
+                    <div>{forumCode}번 게시글</div>
+                </header>
+                <main>
+                {post?(post.map((p)=>(
+                        <article className="project-forum-post">
+                            <header>
+                                <div>게시글 코드 : {p.taskPostCode}</div>
+                                <div>작성일 : {p.taskPostTime}</div>
+                                <div>작성자 : {p.teamName}, {p.accountName}</div>
+                            </header>
+                            <main>
+                                <SafeHTMLComponent html={p.projectForumPostContent} />
+                            </main>
+                            
+                        </article>
+                        ))
+                    ) : (<div>아무 것도 없음</div>)
+                }
+                <div>
+                    <CKEditor
+                    editor={ClassicEditor}/>
+                </div>
+                </main>
+            </div>
         </section>
     )
 }
