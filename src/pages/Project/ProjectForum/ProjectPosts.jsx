@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectPosts = ({posts}) => {
+    const navigate = useNavigate();
     return (
         <table>
             <tr>
@@ -11,7 +13,7 @@ const ProjectPosts = ({posts}) => {
                 <td>업무 담당</td>
             </tr>
             {posts.length != 0 ? posts.map((item)=> (
-                <tr key={item.taskCode}>
+                <tr onClick={() => { navigate(`${item.taskCode}`) }}key={item.taskCode} >
                     <td>{item.taskCode}</td>
                     <td>{item.taskStatus}</td>
                     <td>{item.taskName}</td>

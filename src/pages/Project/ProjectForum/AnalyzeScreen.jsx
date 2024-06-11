@@ -104,15 +104,17 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
                 <Search setSearchResult = {setProjectPosts} projectCode={projectCode} projectOption={projectOption} anyPost={anyPost} page={page-1}/>
             </div>
             <ProjectPosts posts={projectPosts}/>
-            <Pagination
-                    activePage={page} // 현재 페이지
-                    itemsCountPerPage={6} // 한 페이지랑 보여줄 아이템 갯수
-                    totalItemsCount={6} // 총 아이템 갯수
-                    pageRangeDisplayed={5} // paginator의 페이지 범위
-                    prevPageText={"‹"} // "이전"을 나타낼 텍스트
-                    nextPageText={"›"} // "다음"을 나타낼 텍스트
-                    onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
-            />
+            <div style={{margin: '0 auto'}}>
+                <Pagination
+                        activePage={page} // 현재 페이지
+                        itemsCountPerPage={6} // 한 페이지랑 보여줄 아이템 갯수
+                        totalItemsCount={6} // 총 아이템 갯수
+                        pageRangeDisplayed={5} // paginator의 페이지 범위
+                        prevPageText={"‹"} // "이전"을 나타낼 텍스트
+                        nextPageText={"›"} // "다음"을 나타낼 텍스트
+                        onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
+                />
+            </div>
         </div>
     );
 };
