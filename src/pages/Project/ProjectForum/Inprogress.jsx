@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Progress = ({tasks}) => {
+const Explain = ({tasks}) => {
     return (
         <div className='project-info-square'>
             {tasks.length != 0 ?
@@ -9,9 +9,9 @@ const Progress = ({tasks}) => {
                     <span>{item}</span>
                 </div>
             ))
-            : <div>완료된 항목이 없습니다.</div>}
+            : <div>진행중인 항목이 없습니다.</div>}
         </div>
     );
 };
 
-export default Progress;
+export default Explain;
