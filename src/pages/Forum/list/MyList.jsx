@@ -36,9 +36,10 @@ const MyList = ({forum}) => {
     
     return (
         <div>
-            <br/>
-            <h1>내가 쓴 게시글</h1>
-            <hr/>
+            <div className="header">
+                <h1>내가 쓴 게시글</h1>
+                <hr/>
+            </div>
             <div className="layout-container">
                 <section className="sidebar">
                     <MyInfoComponent userInfo={userInfo} />

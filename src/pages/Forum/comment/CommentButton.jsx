@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const CommentButton = ({ forumCode, accountCode }) => {
-    const [commentContent, setCommentContent] = useState('');
-    const [comments, setComments] = useState([]);
+import { openModalWithMessage } from '../../Modal/modalFunc';
+
+
+const CommentButton = ({ forumCode, currentUserAccountCode, comment }) => {
     const navigate = useNavigate();
 
-
-
-    const handleDeletePost = async (commentCode) => {
+    const handleDeletePost = async () => {
         try {
-            await axios.delete(`http://localhost:8080/forum/comment/delete/${commentCode}`, {
+            const response = await axios.delete(`http://localhost:8080/forum/comment/delete/${comment.commentCode}`, {
                 headers: {
                     'Authorization': window.localStorage.getItem("token")
                 }
             });
-            console.log('댓글 삭제 성공');
+            console.log('댓글 삭제 성공' , response.data);
+            openModalWithMessage('댓글이 삭제되었습니다.');
+            navigate('/forum');
         } catch (error) {
             console.error('댓글 삭제 실패:', error);
+            openModalWithMessage('댓글이 삭제되었습니다.');
         }
     };
 
+    // 현재 사용자가 댓글 작성자인지 확인
+    const isAuthor = currentUserAccountCode === comment.account;
+
     return (
         <div>
-            (<button
-            onClick={handleDeletePost}
-            className="btn btn-outline-danger"
-            style={{ textDecoration: 'none' }}>
-            삭제
-        </button>)
+            {isAuthor && (
+                <button
+                    onClick={handleDeletePost}
+                    className="btn btn-outline-danger"
+                    style={{ textDecoration: 'none' }}>
+                    삭제
+                </button>
+            )}
         </div>
     );
 };

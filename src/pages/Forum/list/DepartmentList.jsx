@@ -16,13 +16,12 @@ const DepartmentList = ({ forum }) => {
 
     return (
         <div>
-            <header>
-                <br />
+            <div className="header">
                 <h1>부서게시판</h1>
-                <hr />
-            </header>
+                <hr/>
+            </div>
             <div className="layout-container">
-                <section className="sidebar">
+                <section className="user-info">
                     <MyInfoComponent setUserInfo={setUserInfo} userInfo={userInfo} />
                     <div className="button-container">
                         <button

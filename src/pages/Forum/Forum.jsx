@@ -14,7 +14,6 @@ const Forum = () => {
     const endpoints = {
         '공지사항': 'http://localhost:8080/forum/public',
         '부서 게시판': 'http://localhost:8080/forum/department',
-        '익명 게시판': 'http://localhost:8080/forum/anonymous',
         '내가 쓴 게시글' : 'http://localhost:8080/forum/my-posts',
     };
 
@@ -54,7 +53,6 @@ const Forum = () => {
                     <ol>
                         <li onClick={() => handleTabClick('공지사항')}>공지사항</li>
                         <li onClick={() => handleTabClick('부서 게시판')}>부서 게시판</li>
-                        <li onClick={() => handleTabClick('익명 게시판')}>익명 게시판</li>
                         <li onClick={() => handleTabClick('내가 쓴 게시글')}>내가 쓴 게시글</li>
                     </ol>
                 </section>

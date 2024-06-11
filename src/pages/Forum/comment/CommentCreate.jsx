@@ -3,15 +3,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { openModalWithMessage } from '../../Modal/modalFunc';
 
 const CommentCreate = ({ forumCode, accountCode }) => {
     const [commentContent, setCommentContent] = useState('');
-    const [comments, setComments] = useState([]);
     const navigate = useNavigate();
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log("Account Code:", accountCode); 
 
         try {
             const newComment = {
@@ -19,15 +20,18 @@ const CommentCreate = ({ forumCode, accountCode }) => {
                 forumCode: forumCode,
                 accountCode: accountCode
             };
-            console.log('aaa', newComment)
             const response = await axios.post('http://localhost:8080/forum/comment/create', newComment, {
                 headers: {
                     'Authorization': window.localStorage.getItem("token")
                 }
             });
             console.log('댓글 작성 성공:', response.data);
+            openModalWithMessage('댓글 작성이 완료되었습니다.');
+            navigate('/forum');
+
         } catch (error) {
             console.error('댓글 작성 실패:', error);
+            openModalWithMessage('댓글 작성이 실패되었습니다.');
         }
     };
 

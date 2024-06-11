@@ -86,3 +86,18 @@ padding: 20px;
     text-align: left;
     padding: 10px;
 }
+
+
+.attached-files {
+    display: flex;
+    align-items: center;
+}
+
+.attached-files p {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.attached-files span {
+    margin-right: 10px;
+}

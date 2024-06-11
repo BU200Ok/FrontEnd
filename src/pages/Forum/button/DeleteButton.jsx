@@ -17,12 +17,12 @@ const DeleteButton = ({forum}) => {
                 'Authorization': window.localStorage.getItem("token")  // 여기에 토큰 추가
             }
         });
-            console.log('게시글 삭제');
+            console.log('삭제');
             openModalWithMessage('게시글이 삭제되었습니다.');
             navigate('/forum');
         } catch (error) {
-            console.error('게시글 삭제 실패:', error);
-            openModalWithMessage('게시글 삭제 실패했습니다.');
+            console.error('삭제 실패:', error);
+            openModalWithMessage('삭제 실패했습니다.');
         }
     };
 

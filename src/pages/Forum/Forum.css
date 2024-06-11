@@ -1,39 +1,21 @@
-
-.right-align-container {
-    display: flex;
-    justify-content: flex-end; /* 요소들을 컨테이너의 오른쪽 끝으로 정렬 */
-}
-
-.card-container {
-    width: 100%; /* 또는 다른 적절한 너비 설정 */
-    padding: 10px; /* 적절한 패딩 제공 */
-}
-
-.card {
-    max-width: 400px; /* 카드의 최대 너비 제한 */
-}
-
-.custom-button {
-    padding: 5px 10px; /* 상하 패딩을 줄임 */
-    font-size: 16px; /* 폰트 크기 조절 */
-}
-
 .layout-container {
+    width: 150%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    /* border: 3px solid green; */
 }
 
-.sidebar {
+.user-info {
     flex: 1;
     padding: 20px;
 }
-
 
 .main-content {
     flex: 3;
     padding: 5px;
 }
+
 .button-container {
     width: 100%; /* 부모 요소의 너비를 가득 채움 */
     display: flex;
@@ -46,39 +28,51 @@
 }
 
 .forum-list-container {
-    width: 150%;
+    width: 100%; /* 100%로 변경 */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 5px solid green; */
+    margin-top: 10px;
+    /* border: 3px solid green; */
+    margin-bottom: 20px;
 }
 
 .forum-table-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
 }
 
 .forum-table {
-    width: 100%; 
+    width: 100%;
+    margin: 0 auto;
 }
 
 .forum-table th, .forum-table td {
-    height: 60px;
-    vertical-align: middle; 
+    height: 50px;
+    vertical-align: middle;
 }
 
 .pagination-wrapper {
-    width: 100%;
     display: flex;
     justify-content: center; 
 }
 
 .pagination-container {
     display: flex;
-    justify-content: right;
+    justify-content: right; /* 가운데 정렬 */
 }
 
 
 
+.header { 
+    /* border: 5px solid green; */
+    padding: 20px;
+    width: 150%;
+    justify-content: flex-end;
+}
+
+.header h1 {
+    margin: 0;
+}

@@ -3,8 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import './Comment.css';
+import CommentButton from './CommentButton';
 
-const CommentList = ({ forumCode }) => {
+const CommentList = ({ forumCode,currentUserAccountCode}) => {
     const [comments, setComments] = useState([]);
     const navigate = useNavigate();
 
@@ -28,18 +29,6 @@ const CommentList = ({ forumCode }) => {
         }
     };
 
-    const handleDeletePost = async (commentCode) => {
-        try {
-            await axios.delete(`http://localhost:8080/forum/comment/delete/${commentCode}`, {
-                headers: {
-                    'Authorization': window.localStorage.getItem("token")
-                }
-            });
-            console.log('댓글 삭제 성공');
-        } catch (error) {
-            console.error('댓글 삭제 실패:', error);
-        }
-    };
     return (
         <div>
             {comments.map(comment => (
@@ -51,8 +40,11 @@ const CommentList = ({ forumCode }) => {
                         <Card body className='comment-card'>
                             <p>{comment.commentContent}</p>
                             <div>
-                            <button onClick={() => handleDeletePost(comment.commentCode)} className="btn btn-outline-danger"
-                            style={{ textDecoration: 'none' }}>삭제</button>
+                            <CommentButton 
+                                forumCode={forumCode} 
+                                currentUserAccountCode={currentUserAccountCode} 
+                                comment={comment}
+                            />
                         </div>
                         </Card>
                         <hr/>

@@ -4,10 +4,8 @@ import axios from 'axios';
 import DeleteButton from './button/DeleteButton';
 import UpdateButton from './button/UpdateButton';
 import './ForumDetail.css';
-import CommentComponent from './CommentComponent';
 import CommentCreate from './comment/CommentCreate';
 import CommentList from './comment/CommentList';
-import CommentButton from './comment/CommentButton';
 import FileDownload from './file/FileDownload';
 
 
@@ -78,6 +76,17 @@ const ForumDetailListComponent = () => {
                 <h1 className="post-title">제목: {forum?.forumTitle }</h1>
                 <p className="post-date">작성일: {formatDate(forum?.forumCreateTime)}</p>
                 <p className="post-type">유형: {forum?.forumType}</p>
+                {files.length > 0 && (
+                    <div className="attached-files">
+                        <p>첨부 파일: </p>
+                            {files.map((file, index) => (
+                                <div key={index}>
+                                    <FileDownload fileName={file.changedFileName} />
+                                </div>
+                            ))}
+                        
+                    </div>
+                )}
                 <hr/>
                 <div className="forum-content" dangerouslySetInnerHTML={{ __html: forum?.forumContent }}></div>
                 <div className="action-buttons">
@@ -88,23 +97,11 @@ const ForumDetailListComponent = () => {
                         </div>
                     )}
                 </div>
-                {files.length > 0 && (
-                        <div className="attached-files">
-                            <h3>첨부 파일:</h3>
-                            <ul>
-                                {files.map((file, index) => (
-                                    <li key={index}>
-                                        <FileDownload fileName={file.changedFileName} />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
             </div>
         </div>
         <div className='comment-content'>
-                <CommentList forumCode={forum?.forumCode} accountCode={forum?.accountCode}/>
-                <CommentCreate forumCode={forum?.forumCode} accountCode={forum?.accountCode}/>
+                <CommentList forumCode={forum?.forumCode} currentUserAccountCode ={userInfo?.accountCode}/>
+                <CommentCreate forumCode={forum?.forumCode} accountCode={userInfo?.accountCode}/>
         </div>
         </>
     );

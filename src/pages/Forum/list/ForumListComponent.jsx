@@ -33,29 +33,28 @@ const ForumListComponent = ({forum, userInfo}) => {
     };
 
     return (
+        <>
         <div className='forum-list-container'>
-            <div className='forum-table-wrapper'>
-                <Table striped bordered hover className='forum-table'>
-                    <thead>
-                        <tr>
-                            <th>Num</th>
-                            <th>Type</th>
-                            <th >Title</th>
-                            <th >Created</th>
+            <Table striped bordered hover className='forum-table'>
+                <thead>
+                    <tr>
+                        <th>Num</th>
+                        <th>Type</th>
+                        <th >Title</th>
+                        <th >Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentForumData.map(item => (
+                        <tr key={item.forumCode} onClick={() => handleRowClick(item.forumCode)} style={{ cursor: 'pointer', borderBottom: '1px solid #ccc' }}>
+                            <td>{item.forumCode}</td>
+                            <td>{item.forumType}</td>
+                            <td>{item.forumTitle}</td>
+                            <td>{formatDate(item.forumCreateTime)}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {currentForumData.map(item => (
-                            <tr key={item.forumCode} onClick={() => handleRowClick(item.forumCode)} style={{ cursor: 'pointer', borderBottom: '1px solid #ccc' }}>
-                                <td>{item.forumCode}</td>
-                                <td>{item.forumType}</td>
-                                <td>{item.forumTitle}</td>
-                                <td>{formatDate(item.forumCreateTime)}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
-            </div>
+                    ))}
+                </tbody>
+            </Table>
             <div className="pagination-wrapper">
                 <div className="pagination-container">
                     <Pagination
@@ -70,6 +69,8 @@ const ForumListComponent = ({forum, userInfo}) => {
                 </div>
             </div>
         </div>
+        
+        </>
     );
 };
 
