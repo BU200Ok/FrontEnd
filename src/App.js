@@ -11,17 +11,22 @@ import { Provider } from 'react-redux';
 import store from './redux/redux';
 import LinkModal from './pages/Modal/LinkModal';
 import MessageModal from './pages/Modal/MessageModal';
-import AdminSidbar from './pages/Admin/AdminSidbar';
+import AdminSidbar from'./pages/Admin/AdminSidbar';
 import AdminJoin from './pages/Admin/AdminJoin/AdminJoin';
 import AdminDeletion from './pages/Admin/AdminDeletion/AdminDeletion';
 import Sidebar from './components/Sidebar';
 import Attendance from './pages/Attendance/Attendance';
-import Board from './pages/Board/Board';
+import Forum from './pages/Forum/Forum';
+import ForumCreateComponent from './pages/Forum/post/ForumCreateComponent';
+import ForumEdit from './pages/Forum/post/ForumEdit'
+import ForumDetailListComponent from './pages/Forum/ForumDetailListComponent';
 import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
 import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
 import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
 import InputModal from './pages/Modal/InputModal';
 import ErrorPage from './pages/Error/ErrorPage';
+
+
 
 
 function App() {
@@ -47,14 +52,16 @@ function App() {
             </Route>
 
           <Route element={<Sidebar/>}>
-              <Route path='/mypage' element={<MyPage/>}/>
-              <Route path='/project' element={<Project/>}/>
-              <Route path='/project/:projectCode' element={<ProjectForum/>}/>
-              <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
-              <Route path='/project/create' element={<ProjectCreate/>}/>
+            <Route path='/mypage' element={<MyPage/>}/>
+            <Route path='/project' element={<Project/>}/>
+            <Route path='/project/:projectCode' element={<ProjectForum/>}/>
+            <Route path='/project/create' element={<ProjectCreate/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
-
-            <Route path='/board' element={<Board/>}/>
+            <Route path='/forum' element={<Forum/>}/>
+            <Route path="/create" element={<ForumCreateComponent/>} />
+            <Route path="/forum/:ForumCode" element={<ForumDetailListComponent/>} />
+            <Route path="/project/:projectCode/forumCode/:projectForumCode" element={<ProjectForumPost />} />
+            <Route path="/forum/edit/:forumCode" element={<ForumEdit />} />
           </Route>
   
           </Routes>

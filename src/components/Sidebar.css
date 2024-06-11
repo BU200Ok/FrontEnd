@@ -3,6 +3,7 @@
     width: 300px;
     height: 100vh;
     box-shadow: 2px 0 4px -3px gray;
+    
 }
 .admin-sidebar-company-name{
     user-select: none;

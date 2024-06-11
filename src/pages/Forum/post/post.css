@@ -1,0 +1,40 @@
+.forum {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    /* border: 5px solid red; */
+    margin-left: 100px;
+}
+
+.post-container h1 {
+    margin-bottom: 10px;
+}
+
+.post-container{
+    margin-top: 80px;
+    padding: 10px;
+    text-align: left;
+    /* border: 5px solid green; */
+    margin-left: 100px;
+}
+
+
+.submit_button {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    padding: 20px;
+    border: none;
+    background: indianred;
+    border-radius: 5px;
+    margin-top: 40px;
+    vertical-align: middle;
+    /* border: 1px solid green; */
+    justify-content: flex-end;
+}
+
+.ck-editor__editable {
+    min-height: 20rem;
+    min-width: 50rem;
+
+}

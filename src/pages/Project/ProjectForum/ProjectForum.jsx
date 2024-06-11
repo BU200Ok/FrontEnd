@@ -33,7 +33,7 @@ const ProjectForum = () => {
         }
     },[projectCode])
     const getSidebarData = async () => {
-        const response = await axios.get(`http://localhost:8080/project/project-sidebar?projectCode=${projectCode}`,
+        const response = await axios.get(`http://localhost:8080/project/${projectCode}`,
         {
             headers: {Authorization: localStorage.getItem('token')}
         }
