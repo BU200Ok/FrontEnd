@@ -15,13 +15,16 @@ import AdminSidbar from './pages/Admin/AdminSidbar';
 import AdminJoin from './pages/Admin/AdminJoin/AdminJoin';
 import AdminDeletion from './pages/Admin/AdminDeletion/AdminDeletion';
 import Sidebar from './components/Sidebar';
-import Attendance from './pages/Attendance/Attendance';
+import MyAttendance from './pages/Attendance/MyAttendance';
 import Board from './pages/Board/Board';
 import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
 import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
 import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
 import InputModal from './pages/Modal/InputModal';
 import ErrorPage from './pages/Error/ErrorPage';
+import AttendanceSidebar from './pages/Attendance/AttendanceSidebar';
+import AttendanceHistory from './pages/Attendance/AttendanceHistory';
+import AttendanceApplication from './pages/Attendance/AttendanceApplication';
 
 
 function App() {
@@ -52,7 +55,11 @@ function App() {
               <Route path='/project/:projectCode' element={<ProjectForum/>}/>
               <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
               <Route path='/project/create' element={<ProjectCreate/>}/>
-            <Route path='/attendance' element={<Attendance/>}/>
+            <Route element={<AttendanceSidebar/>}>
+              <Route path='/attendance/status' element={<AttendanceHistory/>}/>
+              <Route path='/attendance/history' element={<MyAttendance/>}/>
+              <Route path='/attendance/application' element={<AttendanceApplication/>}/>
+            </Route>
 
             <Route path='/board' element={<Board/>}/>
           </Route>
