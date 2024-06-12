@@ -1,0 +1,11 @@
+
+.comment-info{
+    /* border: 1px solid green; */
+    width: 100px;
+    float: left;
+    margin-left: 20px;
+}
+
+.comment-card{
+    margin-left: 30px;
+}
