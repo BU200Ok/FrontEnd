@@ -27,6 +27,10 @@ import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
 import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
 import InputModal from './pages/Modal/InputModal';
 import ErrorPage from './pages/Error/ErrorPage';
+import CreateTask from './pages/Project/ProjectForum/CreateTask';
+import TaskSidebar from './pages/Project/ProjectForum/taskComponent/TaskSidebar';
+import TaskDatas from './pages/Project/ProjectForum/taskComponent/TaskDatas';
+import TaskTodoList from './pages/Project/ProjectForum/taskComponent/TaskTodoList';
 import AttendanceSidebar from './pages/Attendance/AttendanceSidebar';
 import AttendanceHistory from './pages/Attendance/AttendanceHistory';
 import AttendanceApplication from './pages/Attendance/AttendanceApplication';
@@ -75,8 +79,13 @@ function App() {
             <Route path='/forum' element={<Forum/>}/>
             <Route path="/create" element={<ForumCreateComponent/>} />
             <Route path="/forum/:ForumCode" element={<ForumDetailListComponent/>} />
-            <Route path="/project/:projectCode/:projectForumCode" element={<ProjectForumPost />} />
             <Route path="/forum/edit/:forumCode" element={<ForumEdit />} />
+            <Route path='/project/:projectCode/writetask' element={<CreateTask/>}/>
+            <Route path='/project/:projectCode/:projectForumCode' element={<TaskSidebar/>}>
+              <Route path="tasks" element={<ProjectForumPost />} />
+              <Route path='datas' element={<TaskDatas/>} />
+              <Route path='todos' element={<TaskTodoList/>} />
+            </Route>
           </Route>
   
           </Routes>

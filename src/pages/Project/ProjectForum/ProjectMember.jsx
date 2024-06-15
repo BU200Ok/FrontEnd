@@ -7,7 +7,7 @@ const ProjectMember = ({projects}) => {
         openInputModalWithMassage("이름을 입력하세요!")
     }
     return (projects ? 
-        <div>
+        <div className='task-bottom-members'>
             <section className="project-sidebar-bottom-container">
                 <button onClick={addMember}>추가하기</button>
                 <div style={{ textAlign: 'start', fontSize: 20 }}>프로젝트 참여자</div>
