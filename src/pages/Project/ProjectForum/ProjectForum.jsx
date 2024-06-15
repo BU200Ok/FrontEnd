@@ -75,6 +75,7 @@ const ProjectForum = () => {
                     </div>
                     <div className="container-top">
                         <ProjectOptionSelectMenu selectedOption={projectOption} optionChange={setProjectOption}/>
+                        <button className="writeTaskBtn" onClick={()=> navigate(`/project/${projectCode}/writetask`)}>글 쓰기</button>
                         {/* <ProjectSearch/> */}
                     </div>
                     <AnalyzeScreen projectCode={projectCode} projectOption={projectOption}/>

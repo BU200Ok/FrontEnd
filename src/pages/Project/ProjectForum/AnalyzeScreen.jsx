@@ -21,12 +21,10 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
     const [projectDoneTasks, setProjectDoneTasks] = useState([]);
     const [projectInprogressTasks, setProjectInprogressTasks] = useState([]);
     const [projectTodoTasks, setProjectTodoTasks] = useState([]);
-    const handlePageChange = (page) => {    //페이지 누름
-        setPage(page);  //여기서 시간이걸림
-        sessionStorage.setItem('currentPage',page); 
-    };
+    
 
     useEffect(()=> {
+        setPage(1);
         getTaskListData();
         switch(projectOption){
             case 2:
@@ -77,15 +75,15 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
     const renderMenu = () => {
         switch (projectOption) {
             case 1:
-                return <AnalyzeMenu setAnyPost={setAnyPost} />;
+                return <AnalyzeMenu setAnyPost={setAnyPost} setPage={setPage}/>;
             case 2:
-                return <DesignMenu setAnyPost={setAnyPost} />;
+                return <DesignMenu setAnyPost={setAnyPost} setPage={setPage}/>;
             case 3:
-                return <ImplementMenu setAnyPost={setAnyPost} />;
+                return <ImplementMenu setAnyPost={setAnyPost} setPage={setPage}/>;
             case 4:
-                return <TestMenu setAnyPost={setAnyPost} />;
+                return <TestMenu setAnyPost={setAnyPost} setPage={setPage}/>;
             case 5:
-                return <OutputsMenu setAnyPost={setAnyPost} />;
+                return <OutputsMenu setAnyPost={setAnyPost} setPage={setPage}/>;
             default:
                 return null;
         }
@@ -103,18 +101,8 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
                 {renderMenu()}
                 <Search setSearchResult = {setProjectPosts} projectCode={projectCode} projectOption={projectOption} anyPost={anyPost} page={page-1}/>
             </div>
-            <ProjectPosts posts={projectPosts}/>
-            <div style={{margin: '0 auto'}}>
-                <Pagination
-                        activePage={page} // 현재 페이지
-                        itemsCountPerPage={6} // 한 페이지랑 보여줄 아이템 갯수
-                        totalItemsCount={6} // 총 아이템 갯수
-                        pageRangeDisplayed={5} // paginator의 페이지 범위
-                        prevPageText={"‹"} // "이전"을 나타낼 텍스트
-                        nextPageText={"›"} // "다음"을 나타낼 텍스트
-                        onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
-                />
-            </div>
+            <ProjectPosts posts={projectPosts} page={page} setPage={setPage} projectCode={projectCode}/>
+            
         </div>
     );
 };

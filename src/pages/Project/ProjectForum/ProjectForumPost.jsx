@@ -15,28 +15,29 @@ const ProjectForumPost = () => {
     const params = useParams();
     const projectCode = params.projectCode;
     const forumCode = params.projectForumCode;
-    const [forum, setForum] = useState([]);
+    // const [forum, setForum] = useState([]);
     const [post,setPost] = useState([]);
 
     useEffect(()=>{
         console.log(forumCode);
+        console.log("projectforumpostprojectforumpostprojectforumpostprojectforumpostprojectforumpost")
         getPostData();
-        getForumData();
+        // getForumData();
     },[]);
 
     function SafeHTMLComponent({ html }) {
         const cleanHTML = DOMPurify.sanitize(html);
         return <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />;
       }
-      const getForumData = async () => {
-        const response = await axios.get(`http://localhost:8080/projects/${projectCode}`,
-        {
-            headers: {Authorization: localStorage.getItem('token')}
-        }
-        )
-        setForum(response.data.obj);
-        console.log(response.data);
-    }
+    // const getForumData = async () => {
+    //     const response = await axios.get(`http://localhost:8080/projects/${projectCode}`,
+    //     {
+    //         headers: {Authorization: localStorage.getItem('token')}
+    //     }
+    //     )
+    //     setForum(response.data.obj);
+    //     console.log(response.data);
+    // }
 
     const getPostData = async () => {
         const response = await axios.get(`http://localhost:8080/projects/tasks/${forumCode}/task-posts`,
@@ -49,41 +50,35 @@ const ProjectForumPost = () => {
 
     return(
         <section style={{display:"flex"}}>
-            
-            <div style={{display:"flex", flexDirection:"column"}}>
-                { forum.projectCode ? 
-                <section className="project-forum-sidebar">
-                    <LocationButton location={`/project/${projectCode}`}/>
-                    <ProjectMember projects = {forum} />
-                </section>
-                : 
-                <section></section>
-                }
-            </div>
-            <div style={{display:"flex", flexDirection:"column"}}>
+            <div style={{display:"flex", flexDirection:"column", height:"100%", justifyContent:"space-between"}}>
                 <header className="project-forum-post-header">
                     <div>{projectCode}번 프로젝트</div>
                     <div>{forumCode}번 게시글</div>
                 </header>
                 <main>
-                {post?(post.map((p)=>(
-                        <article className="project-forum-post">
-                            <header>
-                                <div>게시글 코드 : {p.taskPostCode}</div>
-                                <div>작성일 : {p.taskPostTime}</div>
-                                <div>작성자 : {p.teamName}, {p.accountName}</div>
-                            </header>
-                            <main>
-                                <SafeHTMLComponent html={p.projectForumPostContent} />
-                            </main>
-                            
-                        </article>
-                        ))
-                    ) : (<div>아무 것도 없음</div>)
-                }
+                <div style={{width: "1100px"}}>
+                    {post?(post.map((p)=>(
+                            <article className="project-forum-post project-sidebar-scrollable-container">
+                                <header>
+                                    {/* <div>게시글 코드 : {p.taskPostCode}</div> */}
+                                    <div>{p.teamName} {p.accountName}</div>
+                                    <div>{p.taskPostTime}</div>
+                                </header>
+                                <main>
+                                    <SafeHTMLComponent html={p.taskPostDetail} />
+                                    <footer>
+                                        <div>첨부파일 : </div>
+                                    </footer>
+                                </main>
+                            </article>
+                            ))
+                        ) : (<div>아무 것도 없음</div>)
+                    }
+                </div>
                 <div>
                     <CKEditor
-                    editor={ClassicEditor}/>
+                    editor={ClassicEditor}
+                    />
                 </div>
                 </main>
             </div>
