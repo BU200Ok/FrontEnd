@@ -20,6 +20,8 @@ import Forum from './pages/Forum/Forum';
 import ForumCreateComponent from './pages/Forum/post/ForumCreateComponent';
 import ForumEdit from './pages/Forum/post/ForumEdit'
 import ForumDetailListComponent from './pages/Forum/ForumDetailListComponent';
+import MyAttendance from './pages/Attendance/MyAttendance';
+import Board from './pages/Board/Board';
 import ProjectForum from './pages/Project/ProjectForum/ProjectForum';
 import ProjectForumPost from './pages/Project/ProjectForum/ProjectForumPost';
 import ProjectCreate from './pages/Project/ProjectMain/ProjectCreate/ProjectCreate';
@@ -29,8 +31,9 @@ import CreateTask from './pages/Project/ProjectForum/CreateTask';
 import TaskSidebar from './pages/Project/ProjectForum/taskComponent/TaskSidebar';
 import TaskDatas from './pages/Project/ProjectForum/taskComponent/TaskDatas';
 import TaskTodoList from './pages/Project/ProjectForum/taskComponent/TaskTodoList';
-
-
+import AttendanceSidebar from './pages/Attendance/AttendanceSidebar';
+import AttendanceHistory from './pages/Attendance/AttendanceHistory';
+import AttendanceApplication from './pages/Attendance/AttendanceApplication';
 
 
 function App() {
@@ -56,6 +59,18 @@ function App() {
             </Route>
 
           <Route element={<Sidebar/>}>
+              <Route path='/mypage' element={<MyPage/>}/>
+              <Route path='/project' element={<Project/>}/>
+              <Route path='/project/:projectCode' element={<ProjectForum/>}/>
+              <Route path='/project/:projectCode/:projectForumCode' element={<ProjectForumPost/>}/>
+              <Route path='/project/create' element={<ProjectCreate/>}/>
+            <Route element={<AttendanceSidebar/>}>
+              <Route path='/attendance/status' element={<AttendanceHistory/>}/>
+              <Route path='/attendance/history' element={<MyAttendance/>}/>
+              <Route path='/attendance/application' element={<AttendanceApplication/>}/>
+            </Route>
+
+            <Route path='/board' element={<Board/>}/>
             <Route path='/mypage' element={<MyPage/>}/>
             <Route path='/project' element={<Project/>}/>
             <Route path='/project/:projectCode' element={<ProjectForum/>}/>

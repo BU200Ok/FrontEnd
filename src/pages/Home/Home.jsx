@@ -72,7 +72,7 @@ const Home = () => {
                     <button disabled={!isLogin} onClick={()=>{nav('/mypage')}}><img src='/home/button/mypage.png'/><div>마이페이지</div></button>
                     <button disabled={!isLogin} onClick={()=>{nav('/project')}}><img src='/home/button/project.png'/><div>프로젝트</div></button>
                     <button disabled={!isLogin} onClick={()=>{nav('/forum')}}><img src='/home/button/forum.png'/><div>게시판</div></button>
-                    <button disabled={!isLogin} onClick={()=>{nav('/attendance')}}><img src='/home/button/todoList.png'/><div>근태 관리</div></button>
+                    <button disabled={!isLogin} onClick={()=>{nav('/attendance/status')}}><img src='/home/button/todoList.png'/><div>근태 관리</div></button>
                     <button disabled={!isLogin} onClick={()=>{nav('/board/news')}}><img src='/home/button/todayNews.png'/><div>오늘의 소식</div></button>
                 </section>
             </article>
