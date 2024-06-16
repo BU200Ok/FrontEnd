@@ -10,5 +10,20 @@
     font-size: 20px;
 }
 .task-bottom-members {
-    margin-top: 120px;
+    margin-top: 50px;
+}
+.data-table{
+    width: 1100px;
+    height: 700px;
+    margin-top: 70px;
+    max-width: 100%;
+}
+.todo-table{
+    width: 1000px;
+    margin: 0 auto;
+    margin: 30px;
+}
+.pagination{
+    /* align-items: center; */
+    justify-content: center;
 }

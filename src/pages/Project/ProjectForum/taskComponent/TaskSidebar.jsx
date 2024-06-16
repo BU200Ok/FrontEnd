@@ -48,13 +48,14 @@ const TaskSidebar = () => {
                             <li onClick={()=>navigate(`/project/${projectCode}/${projectForumCode}/tasks`)}>게시글</li>
                             <li onClick={()=>navigate(`/project/${projectCode}/${projectForumCode}/datas`)}>자료실</li>
                             <li onClick={()=>navigate(`/project/${projectCode}/${projectForumCode}/todos`)}>To Do List</li>
+                            <ProjectMember projects = {forum} />
                         </ol>
-                        <ProjectMember projects = {forum} />
+                        
                         </div>
                     </section>
                 : 
                 <section className='project-forum-sidebar'>
-                    <div>프로젝트 정보를 가져오는데에 실패했습니다.</div>
+                    <div>프로젝트 정보를 가져오지 못했습니다.</div>
                 </section>
                 }
             <Outlet/>
