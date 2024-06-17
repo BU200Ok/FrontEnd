@@ -36,7 +36,7 @@ const MyPage = () => {
                 <ShowUserInfo userInfo={userInfo} />
             </div>
             <div className='project_area'>
-                <PriorityProject/>
+                <PriorityProject projInfo={userInfo}/>
                 <RightArrow />
                 <ProjectTodolist />
                 <ProjectInProgress />
