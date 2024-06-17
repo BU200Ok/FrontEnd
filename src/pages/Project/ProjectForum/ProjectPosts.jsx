@@ -14,6 +14,7 @@ const ProjectPosts = ({posts, page, setPage, projectCode}) => {
     return (
         <div>
             <table>
+                <thead>
                 <tr>
                     <td>번호</td>
                     <td>상태</td>
@@ -21,6 +22,7 @@ const ProjectPosts = ({posts, page, setPage, projectCode}) => {
                     <td>작성일</td>
                     <td>업무 담당</td>
                 </tr>
+                </thead>
                 <tbody>
                     {posts.length != 0 ? posts.map((item)=> (
                         <tr onClick={() => { navigate(`/project/${projectCode}/${item.taskCode}/tasks`) }}key={item.taskCode} >

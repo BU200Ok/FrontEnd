@@ -50,7 +50,6 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
                     page: page - 1,
                 }
             });
-            console.log(response.data.obj.content);
             setProjectPosts(response.data.obj.content);
         }
         catch(err){
@@ -62,7 +61,6 @@ const AnalyzeScreen = ({projectCode, projectOption}) => {
             const response = await axios.get(`http://localhost:8080/projects/${projectCode}/tasks/${projectOption}`,{
                 headers: {Authorization: localStorage.getItem('token')},
             });
-            console.log(response.data.obj);
             setProjectDoneTasks(response.data.obj.doneTasks);
             setProjectInprogressTasks(response.data.obj.inProgressTasks);
             setProjectTodoTasks(response.data.obj.todoTasks);

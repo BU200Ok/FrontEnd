@@ -55,6 +55,23 @@ const ProjectForumPost = () => {
             // openModalWithMessage('게시글 작성에 실패했습니다.');
         }
     };
+    const fileUpload = async (e, code) => {
+        const form = new FormData();
+        for (const file of e.target.files) {
+            form.append('files', file);  // 'files'가 @RequestParam과 일치해야 합니다.
+        }    
+        try {
+            const res = await axios.post(`http://localhost:8080/projects/tasks/${forumCode}/task-posts/${code}/files/add`, form, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: window.localStorage.getItem('token'),
+                }
+            });
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+    };
+    
     return(
         <section style={{display:"flex"}}>
             <div style={{display:"flex", flexDirection:"column", height:"100%", justifyContent:"space-between"}}>
@@ -76,6 +93,7 @@ const ProjectForumPost = () => {
                                 <SafeHTMLComponent html={p.taskPostDetail} />
                                 <footer>
                                     <div>첨부파일 : </div>
+                                    <input onChange={(e)=>{fileUpload(e,p.taskPostCode)}} type="file" />
                                 </footer>
                             </main>
                         </div>

@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { openInputModalWithMassage } from '../../Modal/modalFunc';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { openModal } from '../../Modal/modalActions';
 
 const ProjectMember = ({projects}) => {
-    console.log(projects);
-    const addMember = () => {
-        openInputModalWithMassage("이름을 입력하세요!")
+    const value = useSelector(state => state.inputModalValue);
+    useEffect(()=>{
+        if(value.value !== ''){
+            addMemberAPI();
+        }
+    },[value])
+    const addMember = async () => {
+        openInputModalWithMassage("아이디를 입력하세요!");
+    }
+    const addMemberAPI = async () => {
+        try{
+            const res = await axios.post(`http://localhost:8080/projects/${projects.projectCode}/accounts/add?memberName=${value.value}`,{},{
+                headers:{
+                    Authorization: window.localStorage.getItem('token')
+                }
+            });
+            window.location.reload();
+            openModal('추가가 완료되었습니다!');
+        } catch(err){
+            openModal(err,'의 이유로 실패했습니다.');
+        }
     }
     return (projects ? 
         <div className='task-bottom-members'>

@@ -21,15 +21,12 @@ const ProjectForum = () => {
     const [page, setPage] = useState(1);
 
     const value = useSelector((state)=>state.inputModalValue);
-    useEffect(()=>{
-        console.log(value);
-    },[value])
+
 
     useEffect(()=>{
         if(project === null && projectCode){
             // getSidebarData(projectCode);
             getForumData(projectCode);
-            console.log(forum.obj);
         }
     },[projectCode])
     const getSidebarData = async () => {
@@ -42,13 +39,20 @@ const ProjectForum = () => {
         // dayUtil(response.data.obj.projectEnd);
     }
     const getForumData = async () => {
-        const response = await axios.get(`http://localhost:8080/projects/${projectCode}`,
-        {
-            headers: {Authorization: localStorage.getItem('token')}
+        try{
+            const response = await axios.get(`http://localhost:8080/projects/${projectCode}`,
+                {
+                    headers: {Authorization: localStorage.getItem('token')}
+                }
+                )
+                setForum(response.data.obj);
+        } catch(err){
+            if(err.response.data.code === 409){
+                alert('페이지를 볼 수 있는 권한이 없습니다!');
+                navigate('/project');
+            }
         }
-        )
-        setForum(response.data.obj);
-        console.log(response.data);
+
     }
 
     const addMember = () => {

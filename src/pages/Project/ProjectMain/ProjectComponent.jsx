@@ -6,7 +6,6 @@ const ProjectComponent = ({projects, content}) => {
     const [project,setProject] = useState([]);
     const navigate = useNavigate();
     useEffect(()=>{
-        console.log(projects.content);
         if(projects.content && projects.content.length > 0){
             let arr = projects.content.map((pr)=>(
                 <div onClick={()=>{navigate(`/project/${pr.projectCode}`)}} key={pr.projectCode} className='project-main-project-container'>

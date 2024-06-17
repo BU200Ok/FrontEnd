@@ -75,7 +75,6 @@ function App() {
             <Route path='/project' element={<Project/>}/>
             <Route path='/project/:projectCode' element={<ProjectForum/>}/>
             <Route path='/project/create' element={<ProjectCreate/>}/>
-            {/* <Route path='/attendance' element={<Attendance/>}/> */}
             <Route path='/forum' element={<Forum/>}/>
             <Route path="/create" element={<ForumCreateComponent/>} />
             <Route path="/forum/:ForumCode" element={<ForumDetailListComponent/>} />

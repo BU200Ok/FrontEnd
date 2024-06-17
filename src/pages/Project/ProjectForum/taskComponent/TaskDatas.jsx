@@ -33,6 +33,31 @@ const TaskDatas = () => {
     const handlePageChange = (pageNumber) => {
         setPage(pageNumber);
     };
+    const download = async (code) => {
+        try {
+            const fileRename = taskFileDatas[code-1].taskFileRename;
+
+            const fileData = taskFileDatas.find((i) => i.taskPostCode === code);
+            
+            const res = await axios.get(`http://localhost:8080/projects/${projectCode}/tasks/${projectForumCode}/task-files/download`, {
+                params: { taskFileRename: fileData.taskFileRename },
+                headers: {
+                    Authorization: window.localStorage.getItem('token'),
+                },
+                responseType: 'blob',
+            });
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', fileData.taskFileName);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (error) {
+            console.error('Error downloading file:', error);
+        }
+    };
+    
     return (
         <div>
             <Table className='data-table'>
@@ -54,7 +79,7 @@ const TaskDatas = () => {
                                 <th>{item.taskFileName}</th>
                                 <th>{item.taskPostTime}</th>
                                 <th>{item.accountName}</th>
-                                <th>다운로드</th>
+                                <th style={{cursor:'pointer'}} onClick={()=>download(item.taskPostCode)}>다운로드</th>
                             </tr>
                         )
                     )

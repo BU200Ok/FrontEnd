@@ -2,7 +2,6 @@ import React from 'react';
 import LocationButton from '../Component/LocationButton';
 
 const ProjectSidebar = ({projects}) => {
-    console.log(projects);
     return (projects ?
         <div>
             <LocationButton style={{ marginTop: 25 }} location={'/project'} />

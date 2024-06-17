@@ -17,7 +17,7 @@ const Sidebar = () =>{
     }
     const moveSelectionBox = (url) => {
         if(selectionBox.current){
-            if(url === 'attendance'){
+            if(url === 'attendance/status'){
                 selectionBox.current.style.top = '-40px';
                 attendance.current.style.color = 'white';
                 board.current.style.color = 'black';
@@ -38,8 +38,8 @@ const Sidebar = () =>{
     useEffect(()=>{
         const urlArr = window.location.href.split('/');
         const url = urlArr[3];
-        if(url==='attendance'){
-            moveSelectionBox('attendance');
+        if(url==='attendance/status'){
+            moveSelectionBox('attendance/status');
         } else if(url ==='forum'){
             moveSelectionBox('forum');
         } else if(url==='project'){
@@ -53,7 +53,7 @@ const Sidebar = () =>{
                     <div onClick={()=>{navigate('/')}} className="sidebar-company-name">회사 이름</div>
                     <ol className="sidebar-list">
 
-                        <li ref={attendance} onClick={()=>{go('attendance')}}>근태 관리</li>
+                        <li ref={attendance} onClick={()=>{go('attendance/status')}}>근태 관리</li>
 
                         <li ref={board} onClick={()=>{go('forum')}}>게시판</li>
 

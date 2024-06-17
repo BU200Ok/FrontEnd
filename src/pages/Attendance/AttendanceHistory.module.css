@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    margin-left: 60px;
+}
+.header div {
+    margin-right: 9cap;
+    font-size: 20px;
+}
+.table{
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+    box-shadow: 2px 1px 3px 1px gray;
+}
+.table thead tr th {
+    background-color: white;
+    border-radius: 10px;
+    padding-bottom: 1%;
+    padding-top: 10px;
+}

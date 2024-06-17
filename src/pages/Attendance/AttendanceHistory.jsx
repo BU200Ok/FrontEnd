@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styles from './AttendanceHistory.module.css';
 
 
 const AttendanceHistory = () => {
@@ -17,20 +18,20 @@ const AttendanceHistory = () => {
         getAttendanceStatus();
     },[])
     return (
-        <section>
+        <section style={{display:'flex',flexDirection:'column',marginLeft:200,marginTop:100}}>
             {
                 Object.keys(data).length !== 0? (
-                    <div>
-                        <div>총 출근 일 {data.totalCommute}</div>
-                        <div>총 지각 일 {data.totalLateness}</div>
-                        <div>남은 연차 {data.remainingAnnualLeave}</div>
-                        <div>1년에 받는 연차{data.totalAnnualOfYear}</div>
+                    <div className={styles.header}>
+                        <div>총 출근 일 : {data.totalCommute}</div>
+                        <div>총 지각 일 : {data.totalLateness}</div>
+                        <div>남은 연차 : {data.remainingAnnualLeave}</div>
+                        <div>1년에 받는 연차 : {data.totalAnnualOfYear}</div>
                     </div>
                 ) : (<div></div>)
             }
             <hr/>
             <div>이번 년도 휴가 기록</div>
-            <table>
+            <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>타입</th>
@@ -47,7 +48,7 @@ const AttendanceHistory = () => {
                             <td>{annual.annualType}</td>
                             <td>{annual.annualStart}</td>
                             <td>{annual.annualEnd}</td>
-                            <td>{annual.annualCount}</td>
+                            <td>{annual.annualCount}일</td>
                         </tr>
                     ))
                 ) : (<tr></tr>)

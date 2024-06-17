@@ -19,7 +19,6 @@ const Project = () => {
         getAllProject(1);
     },[])
     useEffect(()=> {
-        console.log(project);
     }, [project]);
     const handlePageChange = (page) => {    //페이지 누름
         setPage(page);  //여기서 시간이걸림
@@ -40,7 +39,6 @@ const Project = () => {
                 params : {page : p}
             }
             );
-            console.log(res);
             setTotalElements(res.data.obj.totalElements);
             setProject(res.data.obj);
         }else {
