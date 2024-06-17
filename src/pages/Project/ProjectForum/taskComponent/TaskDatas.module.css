@@ -1,0 +1,23 @@
+.table{
+    margin-top: 200px;
+}
+.table tbody tr td{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    cursor: default;
+}
+.container{
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.download{
+    font-size: 15px;
+    background-color: aliceblue !important;
+    border-radius: 20px;
+    cursor: pointer !important;
+}
+.download:hover{
+
+}

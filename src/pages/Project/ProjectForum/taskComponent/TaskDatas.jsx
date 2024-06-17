@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 import { useParams } from 'react-router-dom';
+import styles from './TaskDatas.module.css';
 
 const TaskDatas = () => {
     const params = useParams();
@@ -35,7 +36,6 @@ const TaskDatas = () => {
     };
     const download = async (code) => {
         try {
-            const fileRename = taskFileDatas[code-1].taskFileRename;
 
             const fileData = taskFileDatas.find((i) => i.taskPostCode === code);
             
@@ -59,8 +59,8 @@ const TaskDatas = () => {
     };
     
     return (
-        <div>
-            <Table className='data-table'>
+        <div className={styles.container}>
+            <Table className={styles.table}>
                 <thead>
                     <tr>
                         <th>번호</th>
@@ -75,11 +75,11 @@ const TaskDatas = () => {
                     taskFileDatas.map((item, index)=> 
                         (
                             <tr key={item.taskPostCode}>
-                                <th>{item.taskPostCode}</th>
-                                <th>{item.taskFileName}</th>
-                                <th>{item.taskPostTime}</th>
-                                <th>{item.accountName}</th>
-                                <th style={{cursor:'pointer'}} onClick={()=>download(item.taskPostCode)}>다운로드</th>
+                                <td>{item.taskPostCode}</td>
+                                <td>{item.taskFileName}</td>
+                                <td>{item.taskPostTime}</td>
+                                <td>{item.accountName}</td>
+                                <td className={styles.download} onClick={()=>download(item.taskPostCode)}>다운로드</td>
                             </tr>
                         )
                     )

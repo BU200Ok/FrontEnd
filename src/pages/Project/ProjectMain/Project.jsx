@@ -109,7 +109,6 @@ const Project = () => {
                 <button onClick={()=>{nav('/project/create')}}>프로젝트 만들기</button>
             </section>
             <ProjectComponent projects={project} title={title}/>
-            </section>
             <Pagination
                     activePage={page} // 현재 페이지
                     itemsCountPerPage={6} // 한 페이지랑 보여줄 아이템 갯수
@@ -119,6 +118,8 @@ const Project = () => {
                     nextPageText={"›"} // "다음"을 나타낼 텍스트
                     onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
             />
+            </section>
+
         </section>
     )
 }

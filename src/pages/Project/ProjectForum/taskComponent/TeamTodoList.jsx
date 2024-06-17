@@ -1,8 +1,12 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import DOMPurify from 'dompurify';
 
 const TeamTodoList = ({projectTodoLists}) => {
-
+    function SafeHTMLComponent({ html }) {
+        const cleanHTML = DOMPurify.sanitize(html);
+        return <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />;
+      }
     return (
         <Table className='todo-table'>
             <thead>
@@ -18,7 +22,7 @@ const TeamTodoList = ({projectTodoLists}) => {
                 {projectTodoLists.length > 0 ? projectTodoLists.map((item, index)=> (
                     <tr key={item.todoListCode}>
                         <td>{item.todoListCode}</td>
-                        <td>{item.todoListContent}</td>
+                        <SafeHTMLComponent html={item.todoListContent}/>
                         <td>{item.todoListStart}</td>
                         <td>{item.todoListEnd}</td>
                         <td>{item.accountName}</td>
