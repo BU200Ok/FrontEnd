@@ -49,6 +49,7 @@
     background: #F8FBFB;
     padding-top: 40px;
     padding-bottom: 40px;
+    justify-content: center;
 }
 .priority_project_area {
     width: 466px;
