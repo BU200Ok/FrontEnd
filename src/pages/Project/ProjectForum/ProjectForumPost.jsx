@@ -59,7 +59,7 @@ const ProjectForumPost = () => {
         const form = new FormData();
         for (const file of e.target.files) {
             form.append('files', file);  // 'files'가 @RequestParam과 일치해야 합니다.
-        }    
+        }
         try {
             const res = await axios.post(`http://localhost:8080/projects/tasks/${forumCode}/task-posts/${code}/files/add`, form, {
                 headers: {
